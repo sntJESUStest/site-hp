@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HP Organização Contábil | Contabilidade para Médias Empresas em Curitiba</title>
+  <meta name="description" content="Escritório de contabilidade especializado em médias empresas em Curitiba. Tributário, RH, escrituração e consultoria estratégica. Diagnóstico gratuito." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="HP Organização Contábil | Contabilidade em Curitiba" />
+  <meta property="og:description" content="Especialistas em médias empresas. Tributário, RH, escrituração e consultoria — sem burocracia, com resultado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue-deep: #042C53;
+      --blue-mid: #0C447C;
+      --blue-main: #185FA5;
+      --blue-light: #85B7EB;
+      --blue-pale: #B5D4F4;
+      --blue-bg: #E6F1FB;
+      --blue-link: #378ADD;
+      --green-ok: #9FE1CB;
+      --star: #EF9F27;
+      --red-err: #E24B4A;
+      --bg: #ffffff;
+      --bg2: #F5F8FC;
+      --text: #1A1F2E;
+      --text2: #64748B;
+      --border: #E2E8F0;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 9px; background: var(--blue-deep); display: flex; align-items: center; justify-content: center; }
+    .logo-mark i { color: var(--blue-light); font-size: 18px; }
+    .logo-name { font-size: 15px; font-weight: 500; }
+    .logo-name span { color: var(--blue-main); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 13px; color: var(--text2); cursor: pointer; transition: color .15s; }
+    .nav-links a:hover { color: var(--blue-main); }
+    .nav-right { display: flex; gap: 12px; align-items: center; }
+    .nav-tel { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
+    .nav-tel i { font-size: 14px; color: var(--blue-main); }
+    .nav-cta { background: var(--blue-main); color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s; }
+    .nav-cta:hover { background: var(--blue-mid); }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 500px; display: grid; grid-template-columns: 1.15fr 0.85fr; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80') center/cover no-repeat; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(4,44,83,0.88); }
+    .hero-l { position: relative; z-index: 1; padding: 4rem 2.5rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(133,183,235,0.15); border: 1px solid rgba(133,183,235,0.25); border-radius: 20px; padding: 5px 14px; font-size: 11px; color: var(--blue-light); letter-spacing: 0.5px; margin-bottom: 1.5rem; width: fit-content; }
+    .hero h1 { font-size: 32px; font-weight: 500; color: #fff; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 1.1rem; }
+    .hero h1 em { color: var(--blue-light); font-style: normal; }
+    .hero-desc { font-size: 14px; color: var(--blue-pale); line-height: 1.8; margin-bottom: 2rem; max-width: 420px; }
+    .hero-cta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--blue-deep); border: none; border-radius: 8px; padding: 11px 24px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+    .btn-w:hover { opacity: .9; }
+    .btn-g { background: transparent; color: var(--blue-light); border: 1px solid rgba(133,183,235,0.3); border-radius: 8px; padding: 11px 18px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: border-color .15s; }
+    .btn-g:hover { border-color: rgba(133,183,235,0.6); }
+    .hero-trust { display: flex; gap: 16px; margin-top: 2rem; flex-wrap: wrap; }
+    .trust-i { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--green-ok); }
+    .trust-i i { font-size: 14px; }
+    .hero-r { position: relative; z-index: 1; background: rgba(255,255,255,0.07); backdrop-filter: blur(14px); border-left: 1px solid rgba(133,183,235,0.15); padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .form-h { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .form-s { font-size: 12px; color: var(--blue-light); margin-bottom: 1.5rem; }
+    .fld { display: flex; flex-direction: column; gap: 9px; }
+    .fld input, .fld select { padding: 10px 13px; font-size: 13px; border: 1px solid rgba(133,183,235,0.25); border-radius: 9px; background: rgba(255,255,255,0.09); color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: border-color .15s; }
+    .fld input::placeholder { color: var(--blue-light); }
+    .fld select { color: var(--blue-light); }
+    .fld input:focus, .fld select:focus { border-color: rgba(133,183,235,0.6); }
+    .fld-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .fsub { background: var(--blue-main); color: #fff; border: none; border-radius: 9px; padding: 11px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 3px; transition: background .15s; font-family: 'Inter', sans-serif; }
+    .fsub:hover { background: var(--blue-mid); }
+    .fprivacy { font-size: 11px; color: var(--blue-light); text-align: center; margin-top: 7px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+    /* ── STATS ── */
+    .social-proof { background: var(--blue-mid); display: grid; grid-template-columns: repeat(5, 1fr); }
+    .sp-item { padding: 1.1rem 1.25rem; border-right: 1px solid rgba(133,183,235,0.15); display: flex; align-items: center; gap: 10px; }
+    .sp-item:last-child { border-right: none; }
+    .sp-icon i { font-size: 22px; color: var(--blue-light); }
+    .sp-val { font-size: 15px; font-weight: 600; color: #fff; }
+    .sp-lbl { font-size: 11px; color: var(--blue-light); margin-top: 1px; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 3.5rem 2rem; }
+    .bg-alt { background: var(--bg2); }
+    .bg-dark { background: var(--blue-deep); }
+    .pill { display: inline-flex; align-items: center; gap: 5px; background: var(--blue-bg); color: var(--blue-mid); border-radius: 20px; padding: 4px 13px; font-size: 11px; letter-spacing: 0.4px; margin-bottom: 0.75rem; }
+    .pill i { font-size: 13px; }
+    .pill-dark { background: rgba(133,183,235,0.12); color: var(--blue-light); border: 1px solid rgba(133,183,235,0.2); }
+    .stitle { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 0.5rem; }
+    .stitle-w { color: #fff; }
+    .ssub { font-size: 14px; color: var(--text2); line-height: 1.8; max-width: 480px; }
+    .ssub-w { color: var(--blue-pale); }
+
+    /* PARA QUEM É */
+    .para-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 2rem; }
+    .para-card { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; height: 170px; }
+    .para-img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .para-card:hover .para-img { transform: scale(1.05); }
+    .para-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,44,83,0.92) 40%, rgba(4,44,83,0.15)); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; }
+    .para-name { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+    .para-desc { font-size: 11px; color: var(--blue-light); line-height: 1.5; }
+
+    /* SOBRE */
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; align-items: center; }
+    .sobre-img { border-radius: 16px; overflow: hidden; height: 300px; }
+    .sobre-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sobre-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .sobre-icon { width: 34px; height: 34px; border-radius: 9px; background: var(--blue-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sobre-icon i { color: var(--blue-main); font-size: 16px; }
+    .sobre-item-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .sobre-item-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+    /* SERVIÇOS */
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 2rem; }
+    .svc { background: var(--bg); padding: 1.5rem; }
+    .svc-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--blue-bg); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .svc-icon i { color: var(--blue-main); font-size: 18px; }
+    .svc-name { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .svc-desc { font-size: 12px; color: var(--text2); line-height: 1.7; }
+
+    /* CURITIBA BANNER */
+    .cwrap { position: relative; height: 210px; border-radius: 16px; overflow: hidden; margin-top: 2rem; }
+    .cwrap img { width: 100%; height: 100%; object-fit: cover; }
+    .cwrap-overlay { position: absolute; inset: 0; background: rgba(4,44,83,0.75); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1rem; }
+    .cwrap-overlay h3 { font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .cwrap-overlay p { font-size: 14px; color: var(--blue-pale); }
+
+    /* COMO FUNCIONA */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 2rem; }
+    .step { padding: 1.75rem 1.25rem; text-align: center; position: relative; }
+    .step:not(:last-child)::after { content: ''; position: absolute; top: 2.25rem; right: 0; width: 1px; height: 36px; background: var(--border); }
+    .step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--blue-deep); color: var(--blue-light); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .step-name { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+    .step-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+    /* DEPOIMENTOS */
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 2rem; }
+    .test-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(133,183,235,0.15); border-radius: 14px; padding: 1.5rem; }
+    .test-stars { color: var(--star); font-size: 13px; margin-bottom: 10px; }
+    .test-text { font-size: 13px; color: var(--blue-pale); line-height: 1.7; margin-bottom: 14px; }
+    .test-author { display: flex; align-items: center; gap: 10px; }
+    .test-av { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .test-name { font-size: 13px; font-weight: 600; color: #fff; }
+    .test-role { font-size: 11px; color: var(--blue-light); }
+
+    /* FAQ */
+    .faq { max-width: 660px; margin: 2rem auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1rem 0; gap: 12px; }
+    .faq-q i { font-size: 16px; color: var(--blue-main); flex-shrink: 0; transition: transform .25s; }
+    .faq-a { font-size: 13px; color: var(--text2); line-height: 1.75; padding-bottom: 1rem; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+
+    /* CTA BANNER */
+    .cta-banner { position: relative; overflow: hidden; }
+    .cta-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80') center/cover no-repeat; }
+    .cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(24,95,165,0.88); }
+    .cta-inner { position: relative; z-index: 1; padding: 3.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-banner h2 { font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .cta-banner p { font-size: 14px; color: var(--blue-pale); }
+    .cta-btn-w { background: #fff; color: var(--blue-main); border: none; border-radius: 10px; padding: 13px 30px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 7px; font-family: 'Inter', sans-serif; transition: opacity .15s; }
+    .cta-btn-w:hover { opacity: .92; }
+    .cta-btn-w i { font-size: 16px; }
+
+    /* FOOTER */
+    .footer { background: #02182F; padding: 3rem 2rem; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer-brand-desc { font-size: 12px; color: var(--blue-light); line-height: 1.7; margin-top: 12px; max-width: 200px; }
+    .fcol-title { font-size: 11px; color: var(--blue-link); letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+    .fcol a { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-light); margin-bottom: 8px; cursor: pointer; transition: color .15s; }
+    .fcol a:hover { color: #fff; }
+    .fcol a i { font-size: 13px; }
+    .footer-bottom { background: #02182F; border-top: 1px solid rgba(133,183,235,0.1); padding: 1.1rem 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .footer-bottom span { font-size: 11px; color: var(--blue-link); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-r { border-left: none; border-top: 1px solid rgba(133,183,235,0.15); }
+      .social-proof { grid-template-columns: repeat(3, 1fr); }
+      .sp-item:nth-child(4), .sp-item:nth-child(5) { border-top: 1px solid rgba(133,183,235,0.15); }
+      .para-grid { grid-template-columns: repeat(2, 1fr); }
+      .sobre-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer { grid-template-columns: 1fr 1fr; }
+      .cta-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 560px) {
+      .nav-tel { display: none; }
+      .para-grid { grid-template-columns: 1fr 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .footer { grid-template-columns: 1fr; }
+      .social-proof { grid-template-columns: 1fr 1fr; }
+      .fld-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-mark"><i class="ti ti-chart-pie"></i></div>
+    <span class="logo-name">HP <span>Organização Contábil</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#para-quem">Para quem é</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-tel"><i class="ti ti-phone"></i> (41) 3015-4800</span>
+    <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Diagnóstico gratuito</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="contato">
+  <div class="hero-bg"></div>
+  <div class="hero-l">
+    <div class="hero-badge"><i class="ti ti-award"></i> +15 anos cuidando de empresas em Curitiba</div>
+    <h1>Contabilidade que<br><em>cresce junto</em><br>com sua empresa</h1>
+    <p class="hero-desc">Somos especialistas em médias empresas. Tributário, RH, escrituração e consultoria — sem burocracia, com resultado.</p>
+    <div class="hero-cta">
+      <button class="btn-w" onclick="document.querySelector('.fld input').focus()">Começar agora</button>
+      <button class="btn-g" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})"><i class="ti ti-player-play"></i> Como funciona</button>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-i"><i class="ti ti-check"></i> Sem fidelidade</span>
+      <span class="trust-i"><i class="ti ti-check"></i> Resposta em 24h</span>
+      <span class="trust-i"><i class="ti ti-check"></i> Migração gratuita</span>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="form-h">Fale com um especialista</div>
+    <p class="form-s">Diagnóstico gratuito, sem compromisso.</p>
+    <div class="fld">
+      <div class="fld-row">
+        <input type="text" placeholder="Nome" />
+        <input type="text" placeholder="Empresa" />
+      </div>
+      <input type="email" placeholder="E-mail corporativo" />
+      <input type="tel" placeholder="WhatsApp" />
+      <select>
+        <option disabled selected>Regime tributário</option>
+        <option>Simples Nacional</option>
+        <option>Lucro Presumido</option>
+        <option>Lucro Real</option>
+        <option>Não sei</option>
+      </select>
+      <button class="fsub">Quero meu diagnóstico gratuito</button>
+      <p class="fprivacy"><i class="ti ti-lock"></i> Seus dados estão protegidos</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="social-proof">
+  <div class="sp-item"><div class="sp-icon"><i class="ti ti-buildings"></i></div><div><div class="sp-val">+500</div><div class="sp-lbl">Empresas atendidas</div></div></div>
+  <div class="sp-item"><div class="sp-icon"><i class="ti ti-calendar"></i></div><div><div class="sp-val">15 anos</div><div class="sp-lbl">De mercado</div></div></div>
+  <div class="sp-item"><div class="sp-icon"><i class="ti ti-clock"></i></div><div><div class="sp-val">24h</div><div class="sp-lbl">Tempo de resposta</div></div></div>
+  <div class="sp-item"><div class="sp-icon"><i class="ti ti-check"></i></div><div><div class="sp-val">100%</div><div class="sp-lbl">Entregas no prazo</div></div></div>
+  <div class="sp-item"><div class="sp-icon"><i class="ti ti-star"></i></div><div><div class="sp-val">4.9/5</div><div class="sp-lbl">Avaliação dos clientes</div></div></div>
+</div>
+
+<!-- PARA QUEM É -->
+<section class="section" id="para-quem">
+  <div class="pill"><i class="ti ti-user-check"></i> Para quem é</div>
+  <div class="stitle">Feito para empresas que querem crescer</div>
+  <p class="ssub">Atendemos médias empresas de diferentes segmentos em Curitiba e região.</p>
+  <div class="para-grid">
+    <div class="para-card">
+      <img class="para-img" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=400&q=80" alt="Comércio" loading="lazy" />
+      <div class="para-overlay"><div class="para-name">Comércio</div><div class="para-desc">ICMS, estoque e varejo</div></div>
+    </div>
+    <div class="para-card">
+      <img class="para-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" alt="Construção civil" loading="lazy" />
+      <div class="para-overlay"><div class="para-name">Construção civil</div><div class="para-desc">RET e contabilidade de obras</div></div>
+    </div>
+    <div class="para-card">
+      <img class="para-img" src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=400&q=80" alt="Saúde" loading="lazy" />
+      <div class="para-overlay"><div class="para-name">Saúde</div><div class="para-desc">Clínicas e consultórios</div></div>
+    </div>
+    <div class="para-card">
+      <img class="para-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80" alt="Serviços" loading="lazy" />
+      <div class="para-overlay"><div class="para-name">Serviços</div><div class="para-desc">ISS e retenções</div></div>
+    </div>
+    <div class="para-card">
+      <img class="para-img" src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=80" alt="Startups" loading="lazy" />
+      <div class="para-overlay"><div class="para-name">Startups</div><div class="para-desc">Cap table e investidores</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section bg-alt">
+  <div class="pill"><i class="ti ti-users"></i> Sobre nós</div>
+  <div class="stitle">Um escritório que pensa como empresa</div>
+  <div class="sobre-grid">
+    <div class="sobre-img">
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="Equipe HP Organização Contábil" loading="lazy" />
+    </div>
+    <div>
+      <div class="sobre-item">
+        <div class="sobre-icon"><i class="ti ti-clock"></i></div>
+        <div><div class="sobre-item-title">15 anos de mercado</div><div class="sobre-item-desc">Desde 2009 atendendo médias empresas em Curitiba com excelência e comprometimento.</div></div>
+      </div>
+      <div class="sobre-item">
+        <div class="sobre-icon"><i class="ti ti-headset"></i></div>
+        <div><div class="sobre-item-title">Time dedicado por cliente</div><div class="sobre-item-desc">Você tem um contador responsável pela sua conta, não um atendimento genérico.</div></div>
+      </div>
+      <div class="sobre-item">
+        <div class="sobre-icon"><i class="ti ti-device-laptop"></i></div>
+        <div><div class="sobre-item-title">Tecnologia e agilidade</div><div class="sobre-item-desc">Sistemas modernos para gestão eficiente e relatórios sempre atualizados.</div></div>
+      </div>
+      <div class="sobre-item">
+        <div class="sobre-icon"><i class="ti ti-shield-check"></i></div>
+        <div><div class="sobre-item-title">Conformidade total</div><div class="sobre-item-desc">Sua empresa sempre em dia com o Fisco, sem surpresas nem multas.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="section" id="servicos">
+  <div class="pill"><i class="ti ti-briefcase"></i> Serviços</div>
+  <div class="stitle">Tudo em um só escritório</div>
+  <p class="ssub">Sem terceirizar, sem fragmentar. Sua empresa tem um time dedicado.</p>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-icon"><i class="ti ti-receipt-tax"></i></div><div class="svc-name">Tributário empresarial</div><div class="svc-desc">Planejamento e redução legal da carga de impostos para médias empresas.</div></div>
+    <div class="svc"><div class="svc-icon"><i class="ti ti-building-bank"></i></div><div class="svc-name">Escrituração contábil</div><div class="svc-desc">Balanços, DRE e demonstrações financeiras com precisão e agilidade.</div></div>
+    <div class="svc"><div class="svc-icon"><i class="ti ti-users"></i></div><div class="svc-name">Recursos humanos</div><div class="svc-desc">Folha de pagamento, admissões, demissões e encargos sem erros.</div></div>
+    <div class="svc"><div class="svc-icon"><i class="ti ti-license"></i></div><div class="svc-name">Abertura de empresa</div><div class="svc-desc">Registro e regularização de CNPJ de forma rápida e segura.</div></div>
+    <div class="svc"><div class="svc-icon"><i class="ti ti-chart-line"></i></div><div class="svc-name">Consultoria financeira</div><div class="svc-desc">Análise de indicadores e orientação para tomada de decisão estratégica.</div></div>
+    <div class="svc"><div class="svc-icon"><i class="ti ti-building"></i></div><div class="svc-name">Holdings e reorganização</div><div class="svc-desc">Fusão, cisão, incorporação e estruturação societária para expansão.</div></div>
+  </div>
+  <div class="cwrap">
+    <img src="https://images.unsplash.com/photo-1568625365131-079e026a927d?w=1400&q=80" alt="Curitiba" loading="lazy" />
+    <div class="cwrap-overlay">
+      <h3>Especialistas em Curitiba e região</h3>
+      <p>Atendimento presencial ou 100% online. Você escolhe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section bg-alt" id="como-funciona">
+  <div class="pill"><i class="ti ti-list-check"></i> Como funciona</div>
+  <div class="stitle">Simples desde o primeiro contato</div>
+  <p class="ssub">Em 4 passos sua empresa está com a contabilidade em dia.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-name">Diagnóstico gratuito</div><div class="step-desc">Entendemos seu negócio, regime tributário e situação atual.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-name">Proposta personalizada</div><div class="step-desc">Montamos um plano ideal para o seu porte e segmento.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-name">Migração sem dor</div><div class="step-desc">Cuidamos de toda a transferência do contador anterior.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-name">Gestão contínua</div><div class="step-desc">Time dedicado, relatórios mensais e suporte direto.</div></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section bg-dark" id="depoimentos">
+  <div class="pill pill-dark"><i class="ti ti-message-circle"></i> Depoimentos</div>
+  <div class="stitle stitle-w">Quem usa, recomenda</div>
+  <p class="ssub ssub-w">Empresas reais que transformaram sua gestão com a HP.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Reduzimos nossa carga tributária em quase 30% com planejamento. A HP mudou completamente nossa visão financeira."</p>
+      <div class="test-author">
+        <img class="test-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Ricardo C." loading="lazy" />
+        <div><div class="test-name">Ricardo C.</div><div class="test-role">Comércio, Curitiba</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Finalmente tenho contador que responde rápido e explica tudo de forma clara. Migramos em menos de uma semana."</p>
+      <div class="test-author">
+        <img class="test-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Ana M." loading="lazy" />
+        <div><div class="test-name">Ana M.</div><div class="test-role">Construtora, Curitiba</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Zero erros na folha e encargos em dia. Os relatórios mensais me ajudam a tomar decisões com mais segurança."</p>
+      <div class="test-author">
+        <img class="test-av" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80" alt="Fernanda S." loading="lazy" />
+        <div><div class="test-name">Fernanda S.</div><div class="test-role">Serviços, Curitiba</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="pill"><i class="ti ti-help-circle"></i> Dúvidas frequentes</div>
+  <div class="stitle">Perguntas que a gente ouve todo dia</div>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">Posso migrar meu contador para a HP sem complicação? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim. Cuidamos de todo o processo de transferência, incluindo documentação e comunicação com o contador anterior. É gratuito e leva em média 5 dias úteis.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quanto tempo leva para ter a contabilidade em dia? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Na maioria dos casos, em até 30 dias sua empresa já está com todas as obrigações regularizadas e com relatórios mensais disponíveis.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Vocês atendem empresas de todos os segmentos? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Temos especialistas em comércio, construção civil, saúde, serviços e startups. Cada segmento tem particularidades fiscais e nosso time está preparado para isso.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Como funciona o suporte ao cliente? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Você tem um contador dedicado e pode entrar em contato por telefone, WhatsApp ou e-mail. Respondemos em até 24h em dias úteis.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Vocês fazem planejamento tributário para Lucro Real? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim. Atendemos empresas nos regimes Simples Nacional, Lucro Presumido e Lucro Real, com planejamento tributário personalizado para cada situação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-banner">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div>
+      <h2>Pronto para simplificar sua contabilidade?</h2>
+      <p>Diagnóstico gratuito + migração sem custo. Fale com um especialista hoje.</p>
+    </div>
+    <button class="cta-btn-w" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"><i class="ti ti-calendar"></i> Agendar diagnóstico gratuito</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="logo">
+      <div class="logo-mark"><i class="ti ti-chart-pie"></i></div>
+      <span class="logo-name" style="color:#fff;">HP <span>Organização Contábil</span></span>
+    </div>
+    <p class="footer-brand-desc">Escritório especializado em médias empresas em Curitiba há mais de 15 anos.</p>
+  </div>
+  <div class="fcol">
+    <div class="fcol-title">Serviços</div>
+    <a href="#">Tributário empresarial</a>
+    <a href="#">Escrituração contábil</a>
+    <a href="#">Recursos humanos</a>
+    <a href="#">Abertura de empresa</a>
+    <a href="#">Holdings</a>
+  </div>
+  <div class="fcol">
+    <div class="fcol-title">Empresa</div>
+    <a href="#">Quem somos</a>
+    <a href="#">Como funciona</a>
+    <a href="#">Depoimentos</a>
+    <a href="#">Blog</a>
+    <a href="#">Política de privacidade</a>
+  </div>
+  <div class="fcol">
+    <div class="fcol-title">Contato</div>
+    <a href="tel:4130154800"><i class="ti ti-phone"></i>(41) 3015-4800</a>
+    <a href="https://wa.me/5541302344399" target="_blank"><i class="ti ti-brand-whatsapp"></i>(41) 3023-4439</a>
+    <a href="mailto:financeiro@hporg.cnt.br"><i class="ti ti-mail"></i>financeiro@hporg.cnt.br</a>
+    <a href="#"><i class="ti ti-map-pin"></i>Curitiba – PR</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 HP Organização Contábil · Todos os direitos reservados</span>
+  <span>CRC-PR · CNPJ 00.000.000/0001-00</span>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
