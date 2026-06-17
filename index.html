@@ -462,9 +462,21 @@
 <section class="section bg-alt" id="noticias">
   <div class="pill"><i class="ti ti-news"></i> Notícias</div>
   <div class="stitle">Fique por dentro do mundo contábil</div>
-  <p class="ssub">Notícias atualizadas automaticamente para você e sua empresa.</p>
-  <div class="news-grid" id="news-grid">
-    <div class="news-loading"><i class="ti ti-loader-2"></i> Carregando notícias...</div>
+  <p class="ssub">Notícias atualizadas automaticamente sobre contabilidade e legislação.</p>
+  <div style="margin-top:2rem;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--bg);">
+    <iframe
+      src="https://news.google.com/rss/search?q=contabilidade+empresarial+brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419"
+      width="100%"
+      height="520"
+      frameborder="0"
+      style="display:block;"
+      title="Notícias de Contabilidade"
+    ></iframe>
+  </div>
+  <div style="margin-top:1rem;text-align:right;">
+    <a href="https://news.google.com/search?q=contabilidade+empresarial+brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419" target="_blank" rel="noopener" style="font-size:13px;color:var(--blue-main);display:inline-flex;align-items:center;gap:5px;">
+      <i class="ti ti-external-link" style="font-size:14px;"></i> Ver todas as notícias no Google News
+    </a>
   </div>
 </section>
 
@@ -529,59 +541,7 @@
     });
   });
 
-  // NOTÍCIAS via GNews API
-  async function carregarNoticias() {
-    const grid = document.getElementById('news-grid');
-    const API_KEY = 'e3cdfb3a72c36c4175994cfc7b1d084e';
-    try {
-      const url = `https://gnews.io/api/v4/search?q=contabilidade+empresarial&lang=pt&country=br&max=6&token=${API_KEY}`;
-      const resp = await fetch(url);
-      if (!resp.ok) throw new Error('Erro API');
-      const data = await resp.json();
-      if (!data.articles?.length) throw new Error('Sem artigos');
-
-      grid.innerHTML = data.articles.map(a => {
-        const date = new Date(a.publishedAt).toLocaleDateString('pt-BR', {day:'2-digit', month:'short', year:'numeric'});
-        const src  = a.source?.name || 'Notícia';
-        const img  = a.image || '';
-        return `
-          <div class="news-card">
-            <a href="${a.url}" target="_blank" rel="noopener noreferrer">
-              ${img
-                ? `<img class="news-img" src="${img}" alt="${a.title}" loading="lazy" onerror="this.outerHTML='<div class=\\'news-img-placeholder\\'><i class=\\'ti ti-news\\'></i></div>'">`
-                : `<div class="news-img-placeholder"><i class="ti ti-news"></i></div>`}
-              <div class="news-body">
-                <div class="news-cat">${src}</div>
-                <div class="news-title">${a.title}</div>
-                <div class="news-date"><i class="ti ti-calendar" style="font-size:11px;margin-right:3px;"></i>${date}</div>
-              </div>
-            </a>
-          </div>`;
-      }).join('');
-
-    } catch(e) {
-      const fallback = [
-        { title: 'Simples Nacional: calendário de obrigações 2026', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
-        { title: 'Como reduzir impostos legalmente na sua empresa', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
-        { title: 'eSocial: mudanças e novidades para 2026', url: 'https://www.jornalcontabil.com.br', cat: 'Jornal Contábil' },
-        { title: 'Lucro Real x Lucro Presumido: qual escolher?', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
-        { title: 'IRPJ 2026: prazo e como declarar corretamente', url: 'https://www.jornalcontabil.com.br', cat: 'Jornal Contábil' },
-        { title: 'Holding familiar: vantagens tributárias e sucessórias', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
-      ];
-      grid.innerHTML = fallback.map(n => `
-        <div class="news-card">
-          <a href="${n.url}" target="_blank" rel="noopener noreferrer">
-            <div class="news-img-placeholder"><i class="ti ti-news"></i></div>
-            <div class="news-body">
-              <div class="news-cat">${n.cat}</div>
-              <div class="news-title">${n.title}</div>
-              <div class="news-date"><i class="ti ti-external-link" style="font-size:11px;margin-right:3px;"></i>Leia mais</div>
-            </div>
-          </a>
-        </div>`).join('');
-    }
-  }
-  carregarNoticias();
+  // sem script necessário para notícias — usando iframe do Google News
 </script>
 </body>
 </html>
