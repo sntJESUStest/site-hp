@@ -529,37 +529,39 @@
     });
   });
 
-  // NOTÍCIAS via Google News RSS (sem CORS, funciona em qualquer hospedagem)
+  // NOTÍCIAS via GNews API
   async function carregarNoticias() {
     const grid = document.getElementById('news-grid');
+    const API_KEY = 'e3cdfb3a72c36c4175994cfc7b1d084e';
     try {
-      // Google News RSS em português sobre contabilidade — não precisa de proxy
-      const rssUrl = 'https://news.google.com/rss/search?q=contabilidade+empresarial+brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419';
-      const resp = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=6&api_key=`);
+      const url = `https://gnews.io/api/v4/search?q=contabilidade+empresarial&lang=pt&country=br&max=6&token=${API_KEY}`;
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error('Erro API');
       const data = await resp.json();
+      if (!data.articles?.length) throw new Error('Sem artigos');
 
-      if (data.status !== 'ok' || !data.items?.length) throw new Error('vazio');
-
-      grid.innerHTML = data.items.slice(0, 6).map(item => {
-        const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('pt-BR', {day:'2-digit', month:'short', year:'numeric'}) : '';
-        const src  = item.author || 'Notícia';
+      grid.innerHTML = data.articles.map(a => {
+        const date = new Date(a.publishedAt).toLocaleDateString('pt-BR', {day:'2-digit', month:'short', year:'numeric'});
+        const src  = a.source?.name || 'Notícia';
+        const img  = a.image || '';
         return `
           <div class="news-card">
-            <a href="${item.link}" target="_blank" rel="noopener noreferrer">
-              <div class="news-img-placeholder"><i class="ti ti-news"></i></div>
+            <a href="${a.url}" target="_blank" rel="noopener noreferrer">
+              ${img
+                ? `<img class="news-img" src="${img}" alt="${a.title}" loading="lazy" onerror="this.outerHTML='<div class=\\'news-img-placeholder\\'><i class=\\'ti ti-news\\'></i></div>'">`
+                : `<div class="news-img-placeholder"><i class="ti ti-news"></i></div>`}
               <div class="news-body">
                 <div class="news-cat">${src}</div>
-                <div class="news-title">${item.title}</div>
-                ${date ? `<div class="news-date"><i class="ti ti-calendar" style="font-size:11px;margin-right:3px;"></i>${date}</div>` : ''}
+                <div class="news-title">${a.title}</div>
+                <div class="news-date"><i class="ti ti-calendar" style="font-size:11px;margin-right:3px;"></i>${date}</div>
               </div>
             </a>
           </div>`;
       }).join('');
 
     } catch(e) {
-      // Fallback: notícias estáticas com links reais
       const fallback = [
-        { title: 'Simples Nacional: veja o calendário de obrigações 2026', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
+        { title: 'Simples Nacional: calendário de obrigações 2026', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
         { title: 'Como reduzir impostos legalmente na sua empresa', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
         { title: 'eSocial: mudanças e novidades para 2026', url: 'https://www.jornalcontabil.com.br', cat: 'Jornal Contábil' },
         { title: 'Lucro Real x Lucro Presumido: qual escolher?', url: 'https://www.contabeis.com.br', cat: 'Contábeis' },
