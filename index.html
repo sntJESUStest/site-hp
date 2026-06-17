@@ -192,6 +192,23 @@
     .footer-bottom span { font-size: 11px; color: var(--blue-link); }
 
     /* RESPONSIVE */
+    /* NOTÍCIAS */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 2rem; }
+    .news-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .2s; }
+    .news-card:hover { box-shadow: 0 4px 20px rgba(24,95,165,0.1); }
+    .news-card a { color: inherit; text-decoration: none; display: flex; flex-direction: column; flex: 1; }
+    .news-img { width: 100%; height: 140px; object-fit: cover; background: var(--bg2); }
+    .news-img-placeholder { width: 100%; height: 140px; background: var(--blue-bg); display: flex; align-items: center; justify-content: center; }
+    .news-img-placeholder i { font-size: 32px; color: var(--blue-main); opacity: .4; }
+    .news-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .news-cat { font-size: 10px; font-weight: 600; color: var(--blue-main); letter-spacing: 0.5px; text-transform: uppercase; }
+    .news-title { font-size: 13px; font-weight: 500; line-height: 1.5; flex: 1; }
+    .news-date { font-size: 11px; color: var(--text2); margin-top: 4px; }
+    .news-loading { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 3rem; color: var(--text2); font-size: 13px; grid-column: 1/-1; }
+    .news-loading i { font-size: 20px; color: var(--blue-main); animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .news-error { grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text2); font-size: 13px; }
+
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
@@ -437,6 +454,16 @@
       <div class="faq-q">Vocês fazem planejamento tributário para Lucro Real? <i class="ti ti-chevron-down"></i></div>
       <div class="faq-a">Sim. Atendemos empresas nos regimes Simples Nacional, Lucro Presumido e Lucro Real, com planejamento tributário personalizado para cada situação.</div>
     </div>
+  </div>
+</section>
+
+<!-- NOTÍCIAS AUTOMÁTICAS -->
+<section class="section bg-alt" id="noticias">
+  <div class="pill"><i class="ti ti-news"></i> Notícias</div>
+  <div class="stitle">Fique por dentro do mundo contábil</div>
+  <p class="ssub">Notícias atualizadas automaticamente para você e sua empresa.</p>
+  <div class="news-grid" id="news-grid">
+    <div class="news-loading"><i class="ti ti-loader-2"></i> Carregando notícias...</div>
   </div>
 </section>
 
