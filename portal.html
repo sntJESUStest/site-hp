@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Interno | HP Organização Contábil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0A0D12;
+      --bg2: #111720;
+      --bg3: #1A2535;
+      --border: rgba(200,214,229,0.1);
+      --border2: rgba(200,214,229,0.18);
+      --silver: #C8D6E5;
+      --silver2: #8FA3B1;
+      --silver3: #E2EAF0;
+      --accent: #2C4A6E;
+      --green: #1DB87A;
+      --red: #E24B4A;
+      --yellow: #EF9F27;
+      --text: #E2EAF0;
+      --text2: #8FA3B1;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(44,74,110,0.3) 0%, transparent 70%), var(--bg);
+    }
+    .login-box {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 2.5rem 2rem; width: 100%; max-width: 380px;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+    }
+    .login-logo { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 2rem; }
+    .login-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; }
+    .login-logo-mark i { color: var(--silver); font-size: 20px; }
+    .login-logo-name { font-size: 15px; font-weight: 600; color: var(--silver3); }
+    .login-title { font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 4px; }
+    .login-sub { font-size: 13px; color: var(--text2); text-align: center; margin-bottom: 2rem; }
+    .login-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+    .login-field label { font-size: 12px; color: var(--text2); }
+    .login-field input {
+      padding: 10px 14px; font-size: 14px; font-family: 'Inter', sans-serif;
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 10px;
+      color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .login-field input:focus { border-color: var(--silver2); box-shadow: 0 0 0 3px rgba(200,214,229,0.1); }
+    .login-btn {
+      width: 100%; padding: 11px; font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #2C4A6E, #1A2535);
+      border: 1px solid var(--border2); border-radius: 10px; color: var(--silver);
+      cursor: pointer; margin-top: 8px; transition: transform .2s, box-shadow .2s;
+    }
+    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,74,110,0.4); }
+    .login-error { font-size: 12px; color: var(--red); text-align: center; margin-top: 8px; display: none; }
+
+    /* ── PORTAL ── */
+    #portal-screen { display: none; min-height: 100vh; }
+
+    .topbar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 0 2rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 10px; }
+    .topbar-logo { width: 30px; height: 30px; border-radius: 8px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; }
+    .topbar-logo i { color: var(--silver); font-size: 15px; }
+    .topbar-name { font-size: 14px; font-weight: 600; color: var(--silver3); }
+    .topbar-badge { font-size: 10px; background: var(--bg3); border: 1px solid var(--border2); color: var(--silver2); border-radius: 20px; padding: 2px 8px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .topbar-user { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 5px; }
+    .topbar-user i { font-size: 14px; }
+    .logout-btn { font-size: 12px; color: var(--text2); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: 'Inter', sans-serif; transition: color .2s; }
+    .logout-btn:hover { color: var(--red); }
+
+    .portal-body { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 56px); }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--bg2); border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 4px;
+    }
+    .sidebar-label { font-size: 10px; color: var(--text2); letter-spacing: 0.6px; text-transform: uppercase; padding: 0 8px; margin: 12px 0 6px; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 9px; padding: 8px 10px;
+      border-radius: 8px; font-size: 13px; color: var(--text2); cursor: pointer;
+      transition: background .15s, color .15s; border: none; background: none;
+      font-family: 'Inter', sans-serif; width: 100%; text-align: left;
+    }
+    .sidebar-item i { font-size: 16px; }
+    .sidebar-item:hover { background: var(--bg3); color: var(--silver3); }
+    .sidebar-item.active { background: var(--accent); color: var(--silver); }
+    .sidebar-count { margin-left: auto; background: var(--bg3); border-radius: 20px; padding: 1px 7px; font-size: 10px; color: var(--silver2); }
+
+    /* MAIN */
+    .main { padding: 2rem; overflow-y: auto; }
+
+    /* BUSCA */
+    .search-wrap { margin-bottom: 2rem; }
+    .search-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .search-sub { font-size: 13px; color: var(--text2); margin-bottom: 1.25rem; }
+    .search-box { position: relative; }
+    .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text2); }
+    .search-box input {
+      width: 100%; padding: 12px 14px 12px 44px; font-size: 14px;
+      background: var(--bg2); border: 1px solid var(--border2); border-radius: 12px;
+      color: var(--text); font-family: 'Inter', sans-serif; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-box input:focus { border-color: var(--silver2); box-shadow: 0 0 0 3px rgba(200,214,229,0.08); }
+    .search-box input::placeholder { color: var(--text2); }
+
+    /* LISTA DE CLIENTES */
+    .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 1.5rem; }
+    .client-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.25rem; cursor: pointer; transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .client-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+    .client-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .client-avatar {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 600; color: var(--silver); flex-shrink: 0;
+    }
+    .client-name { font-size: 14px; font-weight: 600; }
+    .client-type { font-size: 11px; color: var(--text2); margin-top: 2px; }
+    .client-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-size: 10px; border-radius: 20px; padding: 3px 8px;
+      border: 1px solid; display: inline-flex; align-items: center; gap: 3px;
+    }
+    .tag-green { background: rgba(29,184,122,0.1); border-color: rgba(29,184,122,0.3); color: #1DB87A; }
+    .tag-yellow { background: rgba(239,159,39,0.1); border-color: rgba(239,159,39,0.3); color: #EF9F27; }
+    .tag-blue { background: rgba(44,74,110,0.3); border-color: rgba(200,214,229,0.2); color: var(--silver); }
+    .tag-red { background: rgba(226,75,74,0.1); border-color: rgba(226,75,74,0.3); color: var(--red); }
+
+    /* FICHA DO CLIENTE */
+    #ficha { display: none; }
+    .ficha-header { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .back-btn {
+      display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--text2);
+      background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: color .15s; padding: 6px 10px; border-radius: 8px;
+    }
+    .back-btn:hover { color: var(--silver); background: var(--bg3); }
+    .back-btn i { font-size: 16px; }
+    .ficha-avatar {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 600; color: var(--silver);
+    }
+    .ficha-nome { font-size: 22px; font-weight: 600; }
+    .ficha-cnpj { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+    .ficha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ficha-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem;
+    }
+    .ficha-card-title {
+      font-size: 11px; color: var(--text2); letter-spacing: 0.5px; text-transform: uppercase;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 6px;
+    }
+    .ficha-card-title i { font-size: 14px; color: var(--silver2); }
+    .ficha-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .ficha-row:last-child { border-bottom: none; }
+    .ficha-row-label { font-size: 12px; color: var(--text2); }
+    .ficha-row-val { font-size: 13px; font-weight: 500; text-align: right; }
+
+    .obrigacoes-list { display: flex; flex-direction: column; gap: 8px; }
+    .obrig-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg3); border-radius: 10px; padding: 10px 12px;
+    }
+    .obrig-left { display: flex; align-items: center; gap: 8px; }
+    .obrig-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .obrig-icon-green { background: rgba(29,184,122,0.15); }
+    .obrig-icon-yellow { background: rgba(239,159,39,0.15); }
+    .obrig-icon-blue { background: rgba(44,74,110,0.3); }
+    .obrig-icon i { font-size: 15px; }
+    .obrig-name { font-size: 13px; font-weight: 500; }
+    .obrig-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
+    .status-badge { font-size: 10px; border-radius: 20px; padding: 3px 9px; font-weight: 500; }
+    .status-ok { background: rgba(29,184,122,0.15); color: var(--green); }
+    .status-pend { background: rgba(239,159,39,0.15); color: var(--yellow); }
+    .status-atraso { background: rgba(226,75,74,0.15); color: var(--red); }
+
+    .obs-box {
+      background: var(--bg3); border-radius: 10px; padding: 12px;
+      font-size: 13px; color: var(--text2); line-height: 1.7; min-height: 80px;
+      border: 1px solid var(--border); outline: none; width: 100%;
+      font-family: 'Inter', sans-serif; resize: vertical; color: var(--text);
+    }
+
+    .no-results { text-align: center; padding: 3rem; color: var(--text2); font-size: 14px; }
+    .no-results i { font-size: 32px; display: block; margin: 0 auto 10px; opacity: .4; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-mark"><i class="ti ti-chart-pie"></i></div>
+      <span class="login-logo-name">HP Organização Contábil</span>
+    </div>
+    <div class="login-title">Portal Interno</div>
+    <p class="login-sub">Acesso restrito à equipe HP</p>
+    <div class="login-field">
+      <label>Usuário</label>
+      <input type="text" id="login-user" placeholder="seu usuário" />
+    </div>
+    <div class="login-field">
+      <label>Senha</label>
+      <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()" />
+    </div>
+    <button class="login-btn" onclick="fazerLogin()">Entrar no portal</button>
+    <p class="login-error" id="login-error">Usuário ou senha incorretos.</p>
+  </div>
+</div>
+
+<!-- PORTAL -->
+<div id="portal-screen">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo"><i class="ti ti-chart-pie"></i></div>
+      <span class="topbar-name">HP Organização Contábil</span>
+      <span class="topbar-badge">Portal Interno</span>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-user"><i class="ti ti-user"></i> <span id="user-name">Admin</span></span>
+      <button class="logout-btn" onclick="logout()"><i class="ti ti-logout"></i> Sair</button>
+    </div>
+  </div>
+
+  <div class="portal-body">
+    <aside class="sidebar">
+      <div class="sidebar-label">Menu</div>
+      <button class="sidebar-item active" onclick="mostrarLista()"><i class="ti ti-users"></i> Clientes <span class="sidebar-count" id="total-clientes">1</span></button>
+      <button class="sidebar-item"><i class="ti ti-calendar"></i> Obrigações</button>
+      <button class="sidebar-item"><i class="ti ti-chart-bar"></i> Relatórios</button>
+      <div class="sidebar-label">Configurações</div>
+      <button class="sidebar-item"><i class="ti ti-settings"></i> Configurações</button>
+      <button class="sidebar-item"><i class="ti ti-circle-plus"></i> Adicionar cliente</button>
+    </aside>
+
+    <main class="main">
+
+      <!-- LISTA -->
+      <div id="lista">
+        <div class="search-wrap">
+          <div class="search-title">Clientes</div>
+          <p class="search-sub">Busque pelo nome da empresa ou CNPJ.</p>
+          <div class="search-box">
+            <i class="ti ti-search"></i>
+            <input type="text" id="busca" placeholder="Digite o nome da empresa ou CNPJ..." oninput="buscarCliente()" />
+          </div>
+        </div>
+        <div class="clients-grid" id="clients-grid"></div>
+      </div>
+
+      <!-- FICHA -->
+      <div id="ficha">
+        <div class="ficha-header">
+          <button class="back-btn" onclick="voltarLista()"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <div class="ficha-avatar" id="ficha-avatar"></div>
+          <div>
+            <div class="ficha-nome" id="ficha-nome"></div>
+            <div class="ficha-cnpj" id="ficha-cnpj"></div>
+          </div>
+        </div>
+        <div class="ficha-grid" id="ficha-grid"></div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // ── CREDENCIAIS ──
+  const USUARIOS = [
+    { user: 'hp', pass: 'hp2024', nome: 'Administrador' },
+  ];
+
+  // ── BASE DE CLIENTES ──
+  const clientes = [
+    {
+      id: 1,
+      nome: 'Angela Ltda',
+      cnpj: '45.595.511/0001-31',
+      tipo: 'Serviço',
+      socio: 'Angela Mattos',
+      regime: 'Simples Nacional',
+      situacao: 'Ativa',
+      tags: [
+        { label: 'DAS', tipo: 'green' },
+        { label: 'Cód. 420', tipo: 'blue' },
+        { label: 'DARF INSS', tipo: 'yellow' },
+        { label: 'Pró-labore', tipo: 'blue' },
+      ],
+      obrigacoes: [
+        { nome: 'Guia DAS', desc: 'Simples Nacional — mensal', status: 'ok', cor: 'green' },
+        { nome: 'DARF INSS', desc: 'Código 2100 — mensal', status: 'ok', cor: 'yellow' },
+        { nome: 'Pró-labore', desc: 'Código 420 — mensal', status: 'pend', cor: 'blue' },
+      ],
+      info: {
+        'Código atividade': '420',
+        'Responsável contábil': 'HP Organização Contábil',
+        'E-mail': '—',
+        'Telefone': '—',
+        'Endereço': '—',
+      },
+      obs: 'Cliente ativo. Verificar pagamento do pró-labore mensal.',
+    },
+  ];
+
+  // ── LOGIN ──
+  function fazerLogin() {
+    const u = document.getElementById('login-user').value.trim();
+    const p = document.getElementById('login-pass').value;
+    const found = USUARIOS.find(x => x.user === u && x.pass === p);
+    if (found) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('portal-screen').style.display = 'block';
+      document.getElementById('user-name').textContent = found.nome;
+      renderLista(clientes);
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('portal-screen').style.display = 'none';
+    document.getElementById('login-user').value = '';
+    document.getElementById('login-pass').value = '';
+  }
+
+  // ── LISTA ──
+  function iniciais(nome) {
+    return nome.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase();
+  }
+
+  function renderLista(lista) {
+    const grid = document.getElementById('clients-grid');
+    document.getElementById('total-clientes').textContent = clientes.length;
+    if (!lista.length) {
+      grid.innerHTML = '<div class="no-results"><i class="ti ti-search"></i>Nenhum cliente encontrado.</div>';
+      return;
+    }
+    grid.innerHTML = lista.map(c => `
+      <div class="client-card" onclick="abrirFicha(${c.id})">
+        <div class="client-card-top">
+          <div class="client-avatar">${iniciais(c.nome)}</div>
+          <div>
+            <div class="client-name">${c.nome}</div>
+            <div class="client-type">${c.tipo} · ${c.regime}</div>
+          </div>
+        </div>
+        <div class="client-tags">
+          ${c.tags.map(t => `<span class="tag tag-${t.tipo}">${t.label}</span>`).join('')}
+        </div>
+      </div>`).join('');
+  }
+
+  function buscarCliente() {
+    const q = document.getElementById('busca').value.toLowerCase();
+    const filtrado = clientes.filter(c =>
+      c.nome.toLowerCase().includes(q) || c.cnpj.includes(q)
+    );
+    renderLista(filtrado);
+  }
+
+  // ── FICHA ──
+  function abrirFicha(id) {
+    const c = clientes.find(x => x.id === id);
+    document.getElementById('lista').style.display = 'none';
+    document.getElementById('ficha').style.display = 'block';
+    document.getElementById('ficha-avatar').textContent = iniciais(c.nome);
+    document.getElementById('ficha-nome').textContent = c.nome;
+    document.getElementById('ficha-cnpj').textContent = `CNPJ: ${c.cnpj}`;
+
+    document.getElementById('ficha-grid').innerHTML = `
+      <!-- Dados gerais -->
+      <div class="ficha-card">
+        <div class="ficha-card-title"><i class="ti ti-building"></i> Dados da empresa</div>
+        <div class="ficha-row"><span class="ficha-row-label">Razão social</span><span class="ficha-row-val">${c.nome}</span></div>
+        <div class="ficha-row"><span class="ficha-row-label">CNPJ</span><span class="ficha-row-val">${c.cnpj}</span></div>
+        <div class="ficha-row"><span class="ficha-row-label">Tipo</span><span class="ficha-row-val">${c.tipo}</span></div>
+        <div class="ficha-row"><span class="ficha-row-label">Sócio</span><span class="ficha-row-val">${c.socio}</span></div>
+        <div class="ficha-row"><span class="ficha-row-label">Regime</span><span class="ficha-row-val">${c.regime}</span></div>
+        <div class="ficha-row"><span class="ficha-row-label">Situação</span><span class="ficha-row-val"><span class="tag tag-green">${c.situacao}</span></span></div>
+        ${Object.entries(c.info).map(([k,v]) => `<div class="ficha-row"><span class="ficha-row-label">${k}</span><span class="ficha-row-val">${v}</span></div>`).join('')}
+      </div>
+
+      <!-- Obrigações -->
+      <div class="ficha-card">
+        <div class="ficha-card-title"><i class="ti ti-calendar-check"></i> Obrigações mensais</div>
+        <div class="obrigacoes-list">
+          ${c.obrigacoes.map(o => `
+            <div class="obrig-item">
+              <div class="obrig-left">
+                <div class="obrig-icon obrig-icon-${o.cor}">
+                  <i class="ti ti-file-invoice" style="color:${o.cor==='green'?'#1DB87A':o.cor==='yellow'?'#EF9F27':'#C8D6E5'}"></i>
+                </div>
+                <div>
+                  <div class="obrig-name">${o.nome}</div>
+                  <div class="obrig-desc">${o.desc}</div>
+                </div>
+              </div>
+              <span class="status-badge ${o.status==='ok'?'status-ok':o.status==='pend'?'status-pend':'status-atraso'}">
+                ${o.status==='ok'?'Em dia':o.status==='pend'?'Pendente':'Em atraso'}
+              </span>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- Observações (span 2 colunas) -->
+      <div class="ficha-card" style="grid-column:1/-1;">
+        <div class="ficha-card-title"><i class="ti ti-notes"></i> Observações</div>
+        <textarea class="obs-box" rows="4">${c.obs}</textarea>
+      </div>
+    `;
+  }
+
+  function mostrarLista() {
+    voltarLista();
+  }
+
+  function voltarLista() {
+    document.getElementById('ficha').style.display = 'none';
+    document.getElementById('lista').style.display = 'block';
+  }
+</script>
+</body>
+</html>
