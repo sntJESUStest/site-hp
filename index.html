@@ -212,6 +212,39 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .news-error { grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text2); font-size: 13px; }
 
+
+    /* WHATSAPP FLUTUANTE */
+    .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+    .wa-btn { width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.4); cursor:pointer; text-decoration:none; transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),box-shadow .25s; }
+    .wa-btn:hover { transform:scale(1.12); box-shadow:0 12px 32px rgba(37,211,102,0.5); }
+    .wa-btn i { font-size:28px; color:#fff; }
+    .wa-tooltip { background:#1A2535; color:#E2EAF0; font-size:12px; font-weight:500; padding:6px 12px; border-radius:20px; white-space:nowrap; box-shadow:0 4px 16px rgba(0,0,0,0.2); animation:fadeIn .3s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateX(10px)} to{opacity:1;transform:translateX(0)} }
+    .wa-pulse { position:absolute; width:56px; height:56px; border-radius:50%; background:#25D366; opacity:0.4; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%{transform:scale(1);opacity:0.4} 70%{transform:scale(1.5);opacity:0} 100%{transform:scale(1.5);opacity:0} }
+
+    /* PLANOS */
+    .planos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:2rem; }
+    .plano-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:1.75rem; position:relative; transition:transform .3s cubic-bezier(0.34,1.2,0.64,1),box-shadow .3s; }
+    .plano-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(44,74,110,0.12); }
+    .plano-card.destaque { border-color:var(--blue-main); background:linear-gradient(135deg,#f0f6ff,#fff); }
+    .plano-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--blue-main); color:#fff; font-size:11px; font-weight:600; padding:4px 14px; border-radius:20px; white-space:nowrap; }
+    .plano-nome { font-size:14px; font-weight:600; color:var(--text2); margin-bottom:8px; }
+    .plano-preco { font-size:32px; font-weight:600; color:var(--text); letter-spacing:-1px; margin-bottom:4px; }
+    .plano-preco span { font-size:14px; font-weight:400; color:var(--text2); }
+    .plano-desc { font-size:12px; color:var(--text2); margin-bottom:1.25rem; line-height:1.6; }
+    .plano-items { display:flex; flex-direction:column; gap:8px; margin-bottom:1.5rem; }
+    .plano-item { display:flex; align-items:center; gap:8px; font-size:13px; }
+    .plano-item i { font-size:15px; color:var(--blue-main); flex-shrink:0; }
+    .plano-btn { width:100%; padding:10px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all .2s; }
+    .plano-btn-outline { background:transparent; border:1.5px solid var(--border); color:var(--text); }
+    .plano-btn-outline:hover { border-color:var(--blue-main); color:var(--blue-main); }
+    .plano-btn-solid { background:var(--blue-main); border:none; color:#fff; }
+    .plano-btn-solid:hover { background:#1A2535; }
+    .planos-obs { text-align:center; font-size:12px; color:var(--text2); margin-top:1rem; }
+
+    @media (max-width:900px) { .planos-grid { grid-template-columns:1fr; } }
+
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
@@ -250,6 +283,7 @@
     <a href="#para-quem">Para quem é</a>
     <a href="#servicos">Serviços</a>
     <a href="#como-funciona">Como funciona</a>
+    <a href="#planos">Planos</a>
     <a href="#depoimentos">Depoimentos</a>
   </div>
   <div class="nav-right">
@@ -463,6 +497,57 @@
 </section>
 
 
+
+
+<!-- PLANOS -->
+<section class="section" id="planos">
+  <div class="pill"><i class="ti ti-currency-dollar"></i> Planos</div>
+  <div class="stitle">Transparência que você merece</div>
+  <p class="ssub">Escolha o plano ideal para o porte da sua empresa. Sem surpresas na fatura.</p>
+  <div class="planos-grid">
+    <div class="plano-card">
+      <div class="plano-nome">MEI / Autônomo</div>
+      <div class="plano-preco">R$ 89 <span>/mês</span></div>
+      <p class="plano-desc">Ideal para quem está começando e precisa de contabilidade simples e acessível.</p>
+      <div class="plano-items">
+        <div class="plano-item"><i class="ti ti-check"></i> Emissão de DAS mensal</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Declaração anual DASN</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Suporte por WhatsApp</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Consultoria inicial gratuita</div>
+      </div>
+      <button class="plano-btn plano-btn-outline" onclick="window.open('https://wa.me/554130154800','_blank')">Falar com especialista</button>
+    </div>
+    <div class="plano-card destaque">
+      <div class="plano-badge">Mais popular</div>
+      <div class="plano-nome">Pequena / Média empresa</div>
+      <div class="plano-preco">R$ 390 <span>/mês</span></div>
+      <p class="plano-desc">Para empresas do Simples Nacional que precisam de gestão contábil completa.</p>
+      <div class="plano-items">
+        <div class="plano-item"><i class="ti ti-check"></i> Escrituração contábil completa</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Departamento pessoal</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Gestão fiscal e tributária</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Relatórios mensais</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Contador dedicado</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Suporte prioritário</div>
+      </div>
+      <button class="plano-btn plano-btn-solid" onclick="window.open('https://wa.me/554130154800','_blank')">Começar agora</button>
+    </div>
+    <div class="plano-card">
+      <div class="plano-nome">Lucro Presumido / Real</div>
+      <div class="plano-preco">Sob <span>consulta</span></div>
+      <p class="plano-desc">Para empresas maiores com necessidades tributárias específicas e alto volume.</p>
+      <div class="plano-items">
+        <div class="plano-item"><i class="ti ti-check"></i> Tudo do plano anterior</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Planejamento tributário avançado</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Auditoria contábil</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Consultoria financeira mensal</div>
+        <div class="plano-item"><i class="ti ti-check"></i> Holdings e reorganização</div>
+      </div>
+      <button class="plano-btn plano-btn-outline" onclick="window.open('https://wa.me/554130154800','_blank')">Solicitar proposta</button>
+    </div>
+  </div>
+  <p class="planos-obs"><i class="ti ti-shield-check" style="font-size:13px;margin-right:4px;"></i> Sem fidelidade. Cancele quando quiser. Migração gratuita do contador anterior.</p>
+</section>
 
 <!-- CTA FINAL -->
 <div class="cta-banner">
@@ -686,5 +771,24 @@
   const sp = document.querySelector('.social-proof');
   if (sp) statsObserver.observe(sp);
 </script>
+
+<!-- WHATSAPP FLUTUANTE -->
+<div class="wa-float" id="wa-float">
+  <div class="wa-tooltip" id="wa-tooltip">Fale conosco agora!</div>
+  <div style="position:relative;">
+    <div class="wa-pulse"></div>
+    <a class="wa-btn" href="https://wa.me/554130234439" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="ti ti-brand-whatsapp"></i>
+    </a>
+  </div>
+</div>
+<script>
+  // Esconde tooltip após 4s
+  setTimeout(function() {
+    var t = document.getElementById('wa-tooltip');
+    if (t) { t.style.opacity='0'; t.style.transition='opacity .5s'; setTimeout(function(){ t.style.display='none'; }, 500); }
+  }, 4000);
+</script>
+
 </body>
 </html>
