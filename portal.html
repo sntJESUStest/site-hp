@@ -78,6 +78,11 @@
     .tag-blue { background:rgba(44,74,110,0.3); border-color:rgba(200,214,229,0.2); color:var(--silver); }
     .tag-red { background:rgba(226,75,74,0.1); border-color:rgba(226,75,74,0.3); color:var(--red); }
     .no-results { text-align:center; padding:3rem; color:var(--text2); font-size:14px; grid-column:1/-1; }
+    .cert-badge { font-size:10px; border-radius:20px; padding:3px 8px; font-weight:500; display:inline-flex; align-items:center; gap:3px; flex-shrink:0; }
+    .cert-ok { background:rgba(29,184,122,0.12); color:#1DB87A; }
+    .cert-alerta { background:rgba(239,159,39,0.12); color:#EF9F27; }
+    .cert-vencido { background:rgba(226,75,74,0.12); color:#E24B4A; }
+    .cert-sem { background:rgba(143,163,177,0.12); color:#8FA3B1; }
     .no-results i { font-size:32px; display:block; margin:0 auto 10px; opacity:.4; }
 
     /* FICHA */
@@ -187,6 +192,8 @@
     <aside class="sidebar">
       <div class="sidebar-label">Menu</div>
       <button class="sidebar-item active" onclick="voltarLista()"><i class="ti ti-users"></i> Clientes <span class="sidebar-count" id="total-clientes">0</span></button>
+      <div class="sidebar-label">Relatorios</div>
+      <button class="sidebar-item" onclick="gerarRelatorio()"><i class="ti ti-file-report"></i> Certificados</button>
       <div class="sidebar-label">Sistema</div>
       <button class="sidebar-item"><i class="ti ti-settings"></i> Configuracoes</button>
     </aside>
@@ -275,6 +282,83 @@ var clientes = [
     obs: 'Cliente ativo. Verificar pagamento do pro-labore mensal.'
   }
 ];
+
+function certStatusInfo(validade) {
+  if (!validade) return { tipo: 'sem', label: 'Sem cert.' };
+  var hoje = new Date();
+  var val = new Date(validade + 'T12:00:00');
+  var dias = Math.ceil((val - hoje) / 86400000);
+  if (dias < 0) return { tipo: 'vencido', label: 'Vencido' };
+  if (dias <= 60) return { tipo: 'alerta', label: 'Vence em ' + dias + 'd' };
+  return { tipo: 'ok', label: 'Cert. OK' };
+}
+
+function gerarRelatorio() {
+  var linhas = '';
+  var vencidos = 0, alertas = 0, ok = 0, sem = 0;
+  for (var i = 0; i < clientes.length; i++) {
+    var c = clientes[i];
+    var ci = certStatusInfo(c.certificado.validade);
+    var cor = ci.tipo === 'ok' ? '#1DB87A' : ci.tipo === 'alerta' ? '#EF9F27' : ci.tipo === 'vencido' ? '#E24B4A' : '#8FA3B1';
+    var val = c.certificado.validade ? new Date(c.certificado.validade + 'T12:00:00').toLocaleDateString('pt-BR') : '-';
+    linhas += '<tr><td>' + c.nome + '</td><td>' + c.cnpj + '</td><td>' + c.certificado.tipo + '</td><td>' + val + '</td>' +
+      '<td><span style="color:' + cor + ';font-weight:600;">' + ci.label + '</span></td></tr>';
+    if (ci.tipo === 'ok') ok++;
+    else if (ci.tipo === 'alerta') alertas++;
+    else if (ci.tipo === 'vencido') vencidos++;
+    else sem++;
+  }
+  var janela = window.open('', '_blank');
+  janela.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatorio Certificados - HP</title>' +
+    '<style>body{font-family:Inter,sans-serif;padding:2rem;color:#1A2535;background:#fff;}' +
+    'h1{font-size:20px;font-weight:600;margin-bottom:4px;}' +
+    '.sub{font-size:13px;color:#64748B;margin-bottom:2rem;}' +
+    '.resumo{display:flex;gap:16px;margin-bottom:2rem;flex-wrap:wrap;}' +
+    '.res-card{padding:12px 20px;border-radius:10px;font-size:13px;font-weight:500;}' +
+    '.res-ok{background:#EEFAF4;color:#059669;}' +
+    '.res-alerta{background:#FFF8EE;color:#D97706;}' +
+    '.res-vencido{background:#FEF2F2;color:#E24B4A;}' +
+    '.res-sem{background:#F1F5F9;color:#64748B;}' +
+    'table{width:100%;border-collapse:collapse;font-size:13px;}' +
+    'th{text-align:left;padding:10px 12px;background:#F8FAFC;border-bottom:2px solid #E2E8F0;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#64748B;}' +
+    'td{padding:10px 12px;border-bottom:1px solid #F1F5F9;}' +
+    'tr:hover td{background:#F8FAFC;}' +
+    '.footer{margin-top:2rem;font-size:11px;color:#94A3B8;}' +
+    '@media print{body{padding:1rem}}' +
+    '</style></head><body>' +
+    '<h1>Relatorio de Certificados Digitais</h1>' +
+    '<p class="sub">HP Organizacao Contabil &mdash; Gerado em ' + new Date().toLocaleDateString('pt-BR') + '</p>' +
+    '<div class="resumo">' +
+    '<div class="res-card res-ok">✓ Validos: ' + ok + '</div>' +
+    '<div class="res-card res-alerta">⚠ Vencendo: ' + alertas + '</div>' +
+    '<div class="res-card res-vencido">✗ Vencidos: ' + vencidos + '</div>' +
+    '<div class="res-card res-sem">— Sem cert.: ' + sem + '</div>' +
+    '</div>' +
+    '<table><thead><tr><th>Cliente</th><th>CNPJ</th><th>Tipo</th><th>Validade</th><th>Status</th></tr></thead><tbody>' +
+    linhas + '</tbody></table>' +
+    '<div class="footer">HP Organizacao Contabil &mdash; Portal Interno</div>' +
+    '<script>window.print()<\/script>' +
+    '</body></html>');
+  janela.document.close();
+}
+
+// ── LOCALSTORAGE ──
+function salvarDados() {
+  localStorage.setItem('hp_clientes', JSON.stringify(clientes));
+  localStorage.setItem('hp_nextid', String(nextId));
+}
+
+function carregarDados() {
+  var dados = localStorage.getItem('hp_clientes');
+  var nid = localStorage.getItem('hp_nextid');
+  if (dados) {
+    try { clientes = JSON.parse(dados); } catch(e) {}
+  }
+  if (nid) nextId = parseInt(nid);
+}
+
+// Carrega ao iniciar
+carregarDados();
 
 function fazerLogin() {
   var u = document.getElementById('login-user').value.trim();
@@ -511,6 +595,7 @@ function salvarCliente() {
   }
   c.obrigacoes = novas;
 
+  salvarDados();
   // Atualiza header da ficha
   document.getElementById('ficha-avatar').textContent = iniciais(c.nome);
   document.getElementById('ficha-nome-label').textContent = c.nome;
@@ -524,6 +609,7 @@ function excluirCliente() {
   for (var i = 0; i < clientes.length; i++) {
     if (clientes[i].id === clienteAtualId) { clientes.splice(i, 1); break; }
   }
+  salvarDados();
   voltarLista();
   mostrarToast('Cliente removido.');
 }
@@ -571,6 +657,7 @@ function criarCliente() {
     obs: ''
   };
   clientes.push(novo);
+  salvarDados();
   fecharModal();
   document.getElementById('m-nome').value = '';
   document.getElementById('m-cnpj').value = '';
