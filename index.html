@@ -245,6 +245,41 @@
 
     @media (max-width:900px) { .planos-grid { grid-template-columns:1fr; } }
 
+
+    /* DEPARTAMENTOS */
+    .dept-tabs { display:flex; gap:8px; margin-top:2rem; margin-bottom:0; flex-wrap:wrap; }
+    .dept-tab { padding:8px 18px; border-radius:20px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid var(--border); background:transparent; color:var(--text2); font-family:'Inter',sans-serif; transition:all .2s; }
+    .dept-tab:hover { border-color:var(--blue-main); color:var(--blue-main); }
+    .dept-tab.active { background:var(--blue-main); border-color:var(--blue-main); color:#fff; }
+    .dept-panel { display:none; margin-top:1.5rem; animation:deptIn .4s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .dept-panel.active { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+    @keyframes deptIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .dept-info {}
+    .dept-icon-wrap { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; }
+    .dept-icon-wrap i { font-size:26px; }
+    .dept-icon-contabil { background:#EEF6FF; }
+    .dept-icon-contabil i { color:#185FA5; }
+    .dept-icon-fiscal { background:#FFF8EE; }
+    .dept-icon-fiscal i { color:#D97706; }
+    .dept-icon-pessoal { background:#EEFAF4; }
+    .dept-icon-pessoal i { color:#059669; }
+    .dept-title { font-size:22px; font-weight:600; letter-spacing:-0.3px; margin-bottom:8px; }
+    .dept-desc { font-size:14px; color:var(--text2); line-height:1.8; margin-bottom:1.5rem; }
+    .dept-features { display:flex; flex-direction:column; gap:10px; }
+    .dept-feature { display:flex; align-items:flex-start; gap:10px; }
+    .dept-feature-icon { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .dept-feature-icon i { font-size:14px; }
+    .dept-feature-title { font-size:13px; font-weight:600; margin-bottom:2px; }
+    .dept-feature-desc { font-size:12px; color:var(--text2); line-height:1.6; }
+    .dept-cards { display:flex; flex-direction:column; gap:12px; }
+    .dept-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:1.25rem; }
+    .dept-card-title { font-size:13px; font-weight:600; margin-bottom:6px; display:flex; align-items:center; gap:7px; }
+    .dept-card-title i { font-size:15px; color:var(--blue-main); }
+    .dept-card-desc { font-size:12px; color:var(--text2); line-height:1.7; }
+    .dept-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .dept-tag { font-size:11px; background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:3px 10px; color:var(--text2); }
+    @media (max-width:900px) { .dept-panel.active { grid-template-columns:1fr; } }
+
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
@@ -283,6 +318,7 @@
     <a href="#para-quem">Para quem é</a>
     <a href="#servicos">Serviços</a>
     <a href="#como-funciona">Como funciona</a>
+    <a href="#departamentos">Departamentos</a>
     <a href="#planos">Planos</a>
     <a href="#depoimentos">Depoimentos</a>
   </div>
@@ -499,6 +535,167 @@
 
 
 
+
+<!-- DEPARTAMENTOS -->
+<section class="section bg-alt" id="departamentos">
+  <div class="pill"><i class="ti ti-layout-grid"></i> Departamentos</div>
+  <div class="stitle">Nossa estrutura interna</div>
+  <p class="ssub">Cada área da sua empresa cuidada por um time especializado.</p>
+
+  <div class="dept-tabs">
+    <button class="dept-tab active" onclick="trocarDept('contabil', this)"><i class="ti ti-building-bank" style="font-size:14px;margin-right:5px;"></i> Contábil</button>
+    <button class="dept-tab" onclick="trocarDept('fiscal', this)"><i class="ti ti-receipt-tax" style="font-size:14px;margin-right:5px;"></i> Fiscal</button>
+    <button class="dept-tab" onclick="trocarDept('pessoal', this)"><i class="ti ti-users" style="font-size:14px;margin-right:5px;"></i> Pessoal</button>
+  </div>
+
+  <!-- CONTÁBIL -->
+  <div class="dept-panel active" id="dept-contabil">
+    <div class="dept-info">
+      <div class="dept-icon-wrap dept-icon-contabil"><i class="ti ti-building-bank"></i></div>
+      <div class="dept-title">Departamento Contábil</div>
+      <p class="dept-desc">Responsável pelo registro e controle de todas as movimentações financeiras da sua empresa, garantindo conformidade legal e informações precisas para tomada de decisão.</p>
+      <div class="dept-features">
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEF6FF;"><i class="ti ti-file-text" style="color:#185FA5;"></i></div>
+          <div><div class="dept-feature-title">Escrituração contábil</div><div class="dept-feature-desc">Registro de todas as operações financeiras conforme as normas brasileiras de contabilidade.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEF6FF;"><i class="ti ti-chart-bar" style="color:#185FA5;"></i></div>
+          <div><div class="dept-feature-title">Balanço patrimonial e DRE</div><div class="dept-feature-desc">Demonstrações financeiras que mostram a saúde real do seu negócio a qualquer momento.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEF6FF;"><i class="ti ti-shield-check" style="color:#185FA5;"></i></div>
+          <div><div class="dept-feature-title">Auditoria e conformidade</div><div class="dept-feature-desc">Revisão periódica para garantir que tudo está correto e dentro das exigências legais.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEF6FF;"><i class="ti ti-building" style="color:#185FA5;"></i></div>
+          <div><div class="dept-feature-title">Holdings e reorganização societária</div><div class="dept-feature-desc">Estruturação e reorganização de grupos empresariais para otimização patrimonial.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dept-cards">
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-clock"></i> Periodicidade</div>
+        <p class="dept-card-desc">Escrituração mensal com entrega de relatórios até o 10º dia útil de cada mês.</p>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-file-certificate"></i> Obrigações acessórias</div>
+        <p class="dept-card-desc">SPED Contábil, ECF, ECD e demais declarações entregues dentro do prazo legal.</p>
+        <div class="dept-tags">
+          <span class="dept-tag">SPED Contábil</span>
+          <span class="dept-tag">ECF</span>
+          <span class="dept-tag">ECD</span>
+          <span class="dept-tag">DMPL</span>
+        </div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-devices"></i> Acesso digital</div>
+        <p class="dept-card-desc">Relatórios enviados digitalmente com clareza e linguagem acessível para o empresário.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FISCAL -->
+  <div class="dept-panel" id="dept-fiscal">
+    <div class="dept-info">
+      <div class="dept-icon-wrap dept-icon-fiscal"><i class="ti ti-receipt-tax"></i></div>
+      <div class="dept-title">Departamento Fiscal</div>
+      <p class="dept-desc">Cuidamos de toda a parte tributária da sua empresa — apuração de impostos, entrega de obrigações e planejamento para reduzir legalmente sua carga fiscal.</p>
+      <div class="dept-features">
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#FFF8EE;"><i class="ti ti-calculator" style="color:#D97706;"></i></div>
+          <div><div class="dept-feature-title">Apuração de impostos</div><div class="dept-feature-desc">Cálculo correto de ICMS, ISS, PIS, COFINS, IRPJ e CSLL conforme seu regime tributário.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#FFF8EE;"><i class="ti ti-trending-down" style="color:#D97706;"></i></div>
+          <div><div class="dept-feature-title">Planejamento tributário</div><div class="dept-feature-desc">Identificação de oportunidades para reduzir a carga de impostos de forma legal e segura.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#FFF8EE;"><i class="ti ti-file-invoice" style="color:#D97706;"></i></div>
+          <div><div class="dept-feature-title">Obrigações acessórias</div><div class="dept-feature-desc">Entrega de SPED Fiscal, DCTF, EFD-Contribuições e demais declarações no prazo.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#FFF8EE;"><i class="ti ti-refresh" style="color:#D97706;"></i></div>
+          <div><div class="dept-feature-title">Enquadramento e revisão de regime</div><div class="dept-feature-desc">Análise anual para verificar se o regime tributário atual é o mais vantajoso para sua empresa.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dept-cards">
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-file-invoice" style="color:#D97706;"></i> Regimes atendidos</div>
+        <div class="dept-tags" style="margin-top:0;">
+          <span class="dept-tag">Simples Nacional</span>
+          <span class="dept-tag">Lucro Presumido</span>
+          <span class="dept-tag">Lucro Real</span>
+          <span class="dept-tag">MEI</span>
+        </div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-list-check" style="color:#D97706;"></i> Obrigações mensais</div>
+        <p class="dept-card-desc">Apuração e pagamento de guias dentro do prazo, eliminando multas e juros desnecessários.</p>
+        <div class="dept-tags">
+          <span class="dept-tag">DAS</span>
+          <span class="dept-tag">DARF</span>
+          <span class="dept-tag">DCTF</span>
+          <span class="dept-tag">GIA</span>
+          <span class="dept-tag">PGDAS</span>
+        </div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-alert-triangle" style="color:#D97706;"></i> Defesa fiscal</div>
+        <p class="dept-card-desc">Suporte em caso de autuações e notificações da Receita Federal, estadual ou municipal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PESSOAL -->
+  <div class="dept-panel" id="dept-pessoal">
+    <div class="dept-info">
+      <div class="dept-icon-wrap dept-icon-pessoal"><i class="ti ti-users"></i></div>
+      <div class="dept-title">Departamento Pessoal</div>
+      <p class="dept-desc">Gerenciamos toda a relação trabalhista da sua empresa — da admissão à demissão — garantindo conformidade com a legislação e zero erros na folha de pagamento.</p>
+      <div class="dept-features">
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEFAF4;"><i class="ti ti-user-plus" style="color:#059669;"></i></div>
+          <div><div class="dept-feature-title">Admissão e demissão</div><div class="dept-feature-desc">Toda a documentação de entrada e saída de colaboradores dentro das normas da CLT.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEFAF4;"><i class="ti ti-currency-dollar" style="color:#059669;"></i></div>
+          <div><div class="dept-feature-title">Folha de pagamento</div><div class="dept-feature-desc">Cálculo preciso de salários, horas extras, adicionais, descontos e benefícios.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEFAF4;"><i class="ti ti-beach" style="color:#059669;"></i></div>
+          <div><div class="dept-feature-title">Férias e 13º salário</div><div class="dept-feature-desc">Controle e cálculo correto para evitar passivos trabalhistas e reclamações.</div></div>
+        </div>
+        <div class="dept-feature">
+          <div class="dept-feature-icon" style="background:#EEFAF4;"><i class="ti ti-device-laptop" style="color:#059669;"></i></div>
+          <div><div class="dept-feature-title">eSocial e FGTS Digital</div><div class="dept-feature-desc">Envio correto e no prazo de todas as obrigações digitais trabalhistas.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dept-cards">
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-file-text" style="color:#059669;"></i> Obrigações trabalhistas</div>
+        <div class="dept-tags" style="margin-top:0;">
+          <span class="dept-tag">eSocial</span>
+          <span class="dept-tag">FGTS Digital</span>
+          <span class="dept-tag">CAGED</span>
+          <span class="dept-tag">RAIS</span>
+          <span class="dept-tag">DIRF</span>
+        </div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-heart-handshake" style="color:#059669;"></i> Gestão de benefícios</div>
+        <p class="dept-card-desc">Controle de vale-transporte, vale-refeição, plano de saúde e demais benefícios dos colaboradores.</p>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-title"><i class="ti ti-scale" style="color:#059669;"></i> Pró-labore e sócios</div>
+        <p class="dept-card-desc">Cálculo e gestão do pró-labore dos sócios com recolhimento correto de INSS e IRRF.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PLANOS -->
 <section class="section" id="planos">
   <div class="pill"><i class="ti ti-currency-dollar"></i> Planos</div>
@@ -600,6 +797,15 @@
 </div>
 
 <script>
+
+  // Departamentos
+  function trocarDept(id, btn) {
+    document.querySelectorAll('.dept-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.dept-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById('dept-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
