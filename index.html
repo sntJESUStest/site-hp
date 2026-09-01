@@ -336,23 +336,23 @@
   <div class="hero-r">
     <div class="form-h">Fale com um especialista</div>
     <p class="form-s">Diagnóstico gratuito, sem compromisso.</p>
-    <div class="fld">
+    <form class="fld" action="https://formspree.io/f/xwlkopzo" method="POST">
       <div class="fld-row">
-        <input type="text" placeholder="Nome" />
-        <input type="text" placeholder="Empresa" />
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="text" name="empresa" placeholder="Empresa" required />
       </div>
-      <input type="email" placeholder="E-mail corporativo" />
-      <input type="tel" placeholder="WhatsApp" />
-      <select>
-        <option disabled selected>Regime tributário</option>
+      <input type="email" name="email" placeholder="E-mail corporativo" required />
+      <input type="tel" name="whatsapp" placeholder="WhatsApp" required />
+      <select name="regime" required>
+        <option disabled selected value="">Regime tributário</option>
         <option>Simples Nacional</option>
         <option>Lucro Presumido</option>
         <option>Lucro Real</option>
         <option>Não sei</option>
       </select>
-      <button class="fsub">Quero meu diagnóstico gratuito</button>
+      <button type="submit" class="fsub">Quero meu diagnóstico gratuito</button>
       <p class="fprivacy"><i class="ti ti-lock"></i> Seus dados estão protegidos</p>
-    </div>
+    </form>
   </div>
 </section>
 
