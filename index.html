@@ -336,7 +336,7 @@
   <div class="hero-r">
     <div class="form-h">Fale com um especialista</div>
     <p class="form-s">Diagnóstico gratuito, sem compromisso.</p>
-    <form class="fld" action="https://formspree.io/f/xwlkopzo" method="POST">
+    <form class="fld" id="form-diagnostico">
       <div class="fld-row">
         <input type="text" name="nome" placeholder="Nome" required />
         <input type="text" name="empresa" placeholder="Empresa" required />
@@ -350,9 +350,38 @@
         <option>Lucro Real</option>
         <option>Não sei</option>
       </select>
-      <button type="submit" class="fsub">Quero meu diagnóstico gratuito</button>
+      <button type="submit" class="fsub" id="btn-diagnostico">Quero meu diagnóstico gratuito</button>
       <p class="fprivacy"><i class="ti ti-lock"></i> Seus dados estão protegidos</p>
+      <div id="form-sucesso" style="display:none;background:rgba(133,183,235,0.15);border:1px solid rgba(133,183,235,0.3);border-radius:9px;padding:14px;text-align:center;font-size:13px;color:#C8D6E5;">
+        <i class="ti ti-circle-check" style="font-size:22px;color:#85B7EB;display:block;margin-bottom:6px;"></i>
+        Recebemos seu contato! Em breve nossa equipe entrará em contato.
+      </div>
     </form>
+    <script>
+      document.getElementById('form-diagnostico').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btn-diagnostico');
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        const data = new FormData(this);
+        try {
+          const res = await fetch('https://formspree.io/f/xwlkopzo', {
+            method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            this.reset();
+            btn.style.display = 'none';
+            document.getElementById('form-sucesso').style.display = 'block';
+          } else {
+            btn.textContent = 'Erro ao enviar. Tente novamente.';
+            btn.disabled = false;
+          }
+        } catch(err) {
+          btn.textContent = 'Erro ao enviar. Tente novamente.';
+          btn.disabled = false;
+        }
+      });
+    </script>
   </div>
 </section>
 
