@@ -150,6 +150,19 @@
     .step-name { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
     .step-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
 
+    /* FATOR R BANNER */
+    .fator-r-banner { background: linear-gradient(135deg, #0A0D12 0%, #1A2535 50%, #0A0D12 100%); padding: 3.5rem 2rem; position: relative; overflow: hidden; }
+    .fator-r-banner::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: rgba(44,74,110,0.25); pointer-events: none; }
+    .fator-r-banner::after { content: ''; position: absolute; bottom: -80px; left: 10%; width: 200px; height: 200px; border-radius: 50%; background: rgba(44,74,110,0.15); pointer-events: none; }
+    .fator-r-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; position: relative; z-index: 1; }
+    .fator-r-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(133,183,235,0.12); border: 1px solid rgba(133,183,235,0.25); border-radius: 20px; padding: 4px 14px; font-size: 11px; color: var(--blue-light); letter-spacing: 0.5px; margin-bottom: 1rem; width: fit-content; }
+    .fator-r-tag i { font-size: 13px; }
+    .fator-r-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; letter-spacing: -1px; line-height: 1; margin-bottom: .75rem; }
+    .fator-r-sub { font-size: 14px; color: var(--blue-pale); line-height: 1.7; max-width: 480px; }
+    .fator-r-btn { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--blue-deep); border-radius: 10px; padding: 14px 28px; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: transform .2s, box-shadow .2s; }
+    .fator-r-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
+    .fator-r-btn i { font-size: 16px; }
+
     /* DEPOIMENTOS */
     .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 2rem; }
     .test-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(133,183,235,0.15); border-radius: 14px; padding: 1.5rem; }
@@ -299,7 +312,6 @@
     <a href="#departamentos">Departamentos</a>
     <a href="#planos">Planos</a>
     <a href="#depoimentos">Depoimentos</a>
-    <a href="fator-r.html" class="nav-fator-r"><i class="ti ti-calculator"></i> Fator R</a>
   </div>
   <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Diagnóstico gratuito</button>
 </nav>
@@ -443,6 +455,18 @@
     <div class="step"><div class="step-num">2</div><div class="step-name">Proposta personalizada</div><div class="step-desc">Montamos um plano ideal para o seu porte e segmento.</div></div>
     <div class="step"><div class="step-num">3</div><div class="step-name">Migração sem dor</div><div class="step-desc">Cuidamos de toda a transferência do contador anterior.</div></div>
     <div class="step"><div class="step-num">4</div><div class="step-name">Gestão contínua</div><div class="step-desc">Time dedicado, relatórios mensais e suporte direto.</div></div>
+  </div>
+</section>
+
+<!-- FATOR R -->
+<section class="fator-r-banner">
+  <div class="fator-r-inner">
+    <div class="fator-r-text">
+      <div class="fator-r-tag"><i class="ti ti-calculator"></i> Planejamento tributário</div>
+      <h2 class="fator-r-title">Fator R</h2>
+      <p class="fator-r-sub">Entenda como esse cálculo define quanto sua empresa paga de imposto — e como usar isso a seu favor.</p>
+    </div>
+    <a href="fator-r.html" class="fator-r-btn">Entenda como funciona <i class="ti ti-arrow-right"></i></a>
   </div>
 </section>
 
