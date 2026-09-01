@@ -234,6 +234,21 @@
 
     /* PLANOS */
     .planos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:2rem; }
+    /* CARROSSEL ORBITAL */
+    .orbital-track { position:relative; height:420px; perspective:1200px; margin-top:2.5rem; }
+    .orbital-card {
+      position:absolute; left:50%; top:50%;
+      width:260px; margin-left:-130px; margin-top:-180px;
+      transition: transform .6s cubic-bezier(0.34,1.1,0.64,1), opacity .6s, filter .6s;
+      cursor:pointer; user-select:none;
+    }
+    .orbital-card .plano-card { height:100%; }
+    @keyframes orbitFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .orbital-card.pos-center { animation: orbitFloat 3s ease-in-out infinite; }
+    @media (max-width:700px) {
+      .orbital-track { height:380px; }
+      .orbital-card { width:220px; margin-left:-110px; }
+    }
     .plano-card { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:1.75rem; position:relative; transition:transform .3s cubic-bezier(0.34,1.2,0.64,1),box-shadow .3s; }
     .plano-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(44,74,110,0.12); }
     .plano-card.destaque { border-color:var(--blue-main); background:linear-gradient(135deg,#f0f6ff,#fff); }
@@ -656,46 +671,155 @@
   <div class="pill"><i class="ti ti-layout-cards"></i> Soluções</div>
   <div class="stitle">Contabilidade sob medida para cada empresa</div>
   <p class="ssub">Atendemos diferentes portes e regimes tributários com soluções personalizadas. Fale com um especialista e receba uma proposta adequada ao seu negócio.</p>
-  <div class="planos-grid">
-    <div class="plano-card">
-      <div class="plano-nome">MEI / Autônomo</div>
-      <p class="plano-desc">Ideal para quem está começando e precisa de contabilidade simples, ágil e sem complicação.</p>
-      <div class="plano-items">
-        <div class="plano-item"><i class="ti ti-check"></i> Emissão de DAS mensal</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Declaração anual DASN</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Suporte por WhatsApp</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Consultoria inicial gratuita</div>
+
+  <!-- Carrossel Orbital -->
+  <div style="position:relative;">
+    <!-- Seta esquerda -->
+    <button onclick="orbitar(-1)" style="position:absolute;left:0;top:50%;transform:translateY(-80px);z-index:20;width:44px;height:44px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(44,74,110,0.12);transition:all .2s;color:var(--text2);" onmouseover="this.style.borderColor='var(--blue-main)';this.style.color='var(--blue-main)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">
+      <i class="ti ti-chevron-left" style="font-size:20px;"></i>
+    </button>
+
+    <div class="orbital-track" id="orbital-track">
+      <!-- Card 0: MEI -->
+      <div class="orbital-card" data-idx="0" onclick="irParaCard(0)">
+        <div class="plano-card">
+          <div class="plano-nome">MEI / Autônomo</div>
+          <p class="plano-desc">Ideal para quem está começando e precisa de contabilidade simples, ágil e sem complicação.</p>
+          <div class="plano-items">
+            <div class="plano-item"><i class="ti ti-check"></i> Emissão de DAS mensal</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Declaração anual DASN</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Suporte por WhatsApp</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Consultoria inicial gratuita</div>
+          </div>
+          <button class="plano-btn plano-btn-outline" onclick="event.stopPropagation();window.open('https://wa.me/5541988900722','_blank')">Falar com especialista</button>
+        </div>
       </div>
-      <button class="plano-btn plano-btn-outline" onclick="window.open('https://wa.me/5541988900722','_blank')">Falar com especialista</button>
+      <!-- Card 1: Pequena/Média -->
+      <div class="orbital-card" data-idx="1" onclick="irParaCard(1)">
+        <div class="plano-card destaque">
+          <div class="plano-badge">Mais procurado</div>
+          <div class="plano-nome">Pequena / Média empresa</div>
+          <p class="plano-desc">Para empresas do Simples Nacional que precisam de gestão contábil completa e um contador dedicado.</p>
+          <div class="plano-items">
+            <div class="plano-item"><i class="ti ti-check"></i> Escrituração contábil completa</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Departamento pessoal</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Gestão fiscal e tributária</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Relatórios mensais</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Contador dedicado</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Suporte prioritário</div>
+          </div>
+          <button class="plano-btn plano-btn-solid" onclick="event.stopPropagation();window.open('https://wa.me/5541988900722','_blank')">Solicitar proposta</button>
+        </div>
+      </div>
+      <!-- Card 2: Lucro Presumido -->
+      <div class="orbital-card" data-idx="2" onclick="irParaCard(2)">
+        <div class="plano-card">
+          <div class="plano-nome">Lucro Presumido / Real</div>
+          <p class="plano-desc">Para empresas maiores com necessidades tributárias específicas, alto volume e operações mais complexas.</p>
+          <div class="plano-items">
+            <div class="plano-item"><i class="ti ti-check"></i> Planejamento tributário avançado</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Auditoria contábil</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Consultoria financeira mensal</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Holdings e reorganização societária</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Equipe multidisciplinar dedicada</div>
+          </div>
+          <button class="plano-btn plano-btn-outline" onclick="event.stopPropagation();window.open('https://wa.me/5541988900722','_blank')">Solicitar proposta</button>
+        </div>
+      </div>
+      <!-- Card 3: Profissionais da Saúde -->
+      <div class="orbital-card" data-idx="3" onclick="irParaCard(3)">
+        <div class="plano-card">
+          <div class="plano-nome">Profissionais da Saúde</div>
+          <p class="plano-desc">Para médicos, dentistas e clínicas que precisam de contabilidade especializada com foco em redução tributária.</p>
+          <div class="plano-items">
+            <div class="plano-item"><i class="ti ti-check"></i> CNPJ médico e abertura de clínica</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Redução de impostos no Simples</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Gestão de pró-labore</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Folha de pagamento da equipe</div>
+            <div class="plano-item"><i class="ti ti-check"></i> Planejamento patrimonial</div>
+          </div>
+          <button class="plano-btn plano-btn-outline" onclick="event.stopPropagation();window.open('https://wa.me/5541988900722','_blank')">Solicitar proposta</button>
+        </div>
+      </div>
     </div>
-    <div class="plano-card destaque">
-      <div class="plano-badge">Mais procurado</div>
-      <div class="plano-nome">Pequena / Média empresa</div>
-      <p class="plano-desc">Para empresas do Simples Nacional que precisam de gestão contábil completa e um contador dedicado.</p>
-      <div class="plano-items">
-        <div class="plano-item"><i class="ti ti-check"></i> Escrituração contábil completa</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Departamento pessoal</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Gestão fiscal e tributária</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Relatórios mensais</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Contador dedicado</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Suporte prioritário</div>
-      </div>
-      <button class="plano-btn plano-btn-solid" onclick="window.open('https://wa.me/5541988900722','_blank')">Solicitar proposta</button>
-    </div>
-    <div class="plano-card">
-      <div class="plano-nome">Lucro Presumido / Real</div>
-      <p class="plano-desc">Para empresas maiores com necessidades tributárias específicas, alto volume e operações mais complexas.</p>
-      <div class="plano-items">
-        <div class="plano-item"><i class="ti ti-check"></i> Planejamento tributário avançado</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Auditoria contábil</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Consultoria financeira mensal</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Holdings e reorganização societária</div>
-        <div class="plano-item"><i class="ti ti-check"></i> Equipe multidisciplinar dedicada</div>
-      </div>
-      <button class="plano-btn plano-btn-outline" onclick="window.open('https://wa.me/5541988900722','_blank')">Solicitar proposta</button>
+
+    <!-- Seta direita -->
+    <button onclick="orbitar(1)" style="position:absolute;right:0;top:50%;transform:translateY(-80px);z-index:20;width:44px;height:44px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(44,74,110,0.12);transition:all .2s;color:var(--text2);" onmouseover="this.style.borderColor='var(--blue-main)';this.style.color='var(--blue-main)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">
+      <i class="ti ti-chevron-right" style="font-size:20px;"></i>
+    </button>
+
+    <!-- Dots -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:1rem;" id="orbital-dots">
+      <div onclick="irParaCard(0)" style="height:8px;border-radius:4px;background:var(--blue-main);cursor:pointer;transition:all .3s;width:22px;opacity:1;"></div>
+      <div onclick="irParaCard(1)" style="height:8px;border-radius:4px;background:var(--blue-main);cursor:pointer;transition:all .3s;width:8px;opacity:.3;"></div>
+      <div onclick="irParaCard(2)" style="height:8px;border-radius:4px;background:var(--blue-main);cursor:pointer;transition:all .3s;width:8px;opacity:.3;"></div>
+      <div onclick="irParaCard(3)" style="height:8px;border-radius:4px;background:var(--blue-main);cursor:pointer;transition:all .3s;width:8px;opacity:.3;"></div>
     </div>
   </div>
-  <p class="planos-obs"><i class="ti ti-shield-check" style="font-size:13px;margin-right:4px;"></i> Soluções ajustáveis conforme a necessidade da sua empresa. Migração gratuita do contador anterior.</p>
+
+  <p class="planos-obs" style="margin-top:1.5rem;"><i class="ti ti-shield-check" style="font-size:13px;margin-right:4px;"></i> Soluções ajustáveis conforme a necessidade da sua empresa. Migração gratuita do contador anterior.</p>
+
+  <script>
+  (function(){
+    var atual = 1; // começa no "Mais procurado"
+    var total = 4;
+
+    // Posições relativas ao card central: -2, -1, 0, +1 no anel de 4
+    // ordem visual: esq-longe, esq-perto, centro, dir-perto (dir-longe some atrás)
+    function posStyle(rel, isCenter) {
+      var configs = {
+        '-2': { tx:'-200%', tz:'-220px', scale:0.62, opacity:0.25, zi:1,  ry:'22deg'  },
+        '-1': { tx:'-105%', tz:'-80px',  scale:0.80, opacity:0.65, zi:2,  ry:'12deg'  },
+         '0': { tx:'0%',    tz:'0px',    scale:1.00, opacity:1.00, zi:4,  ry:'0deg'   },
+         '1': { tx:'105%',  tz:'-80px',  scale:0.80, opacity:0.65, zi:2,  ry:'-12deg' },
+         '2': { tx:'200%',  tz:'-220px', scale:0.62, opacity:0.25, zi:1,  ry:'-22deg' },
+      };
+      var c = configs[String(rel)] || configs['2'];
+      return 'translateX('+c.tx+') translateZ('+c.tz+') rotateY('+c.ry+') scale('+c.scale+')';
+    }
+
+    function render() {
+      var cards = document.querySelectorAll('.orbital-card');
+      cards.forEach(function(card, i) {
+        var rel = i - atual;
+        // wrap: garante que rel fique entre -2 e 2
+        while (rel > 2)  rel -= total;
+        while (rel < -2) rel += total;
+        var configs = {
+          '-2': { tz:'-220px', scale:0.62, opacity:0.25, zi:1,  tx:'-200%', ry:'22deg'  },
+          '-1': { tz:'-80px',  scale:0.80, opacity:0.65, zi:2,  tx:'-105%', ry:'12deg'  },
+           '0': { tz:'0px',    scale:1.00, opacity:1.00, zi:4,  tx:'0%',    ry:'0deg'   },
+           '1': { tz:'-80px',  scale:0.80, opacity:0.65, zi:2,  tx:'105%',  ry:'-12deg' },
+           '2': { tz:'-220px', scale:0.62, opacity:0.25, zi:1,  tx:'200%',  ry:'-22deg' },
+        };
+        var c = configs[String(rel)];
+        card.style.transform = 'translateX('+c.tx+') translateZ('+c.tz+') rotateY('+c.ry+') scale('+c.scale+')';
+        card.style.opacity = c.opacity;
+        card.style.zIndex = c.zi;
+        card.style.filter = rel === 0 ? 'none' : 'blur(0px) brightness(0.97)';
+        card.classList.toggle('pos-center', rel === 0);
+        card.style.pointerEvents = rel === 0 ? 'auto' : 'auto';
+      });
+      // dots
+      var dots = document.querySelectorAll('#orbital-dots div');
+      dots.forEach(function(d, i) {
+        d.style.opacity = i === atual ? '1' : '.3';
+        d.style.width   = i === atual ? '22px' : '8px';
+      });
+    }
+
+    window.orbitar = function(dir) {
+      atual = (atual + dir + total) % total;
+      render();
+    };
+    window.irParaCard = function(idx) {
+      atual = idx;
+      render();
+    };
+
+    render();
+  })();
+  </script>
 </section>
 
 <!-- CTA FINAL -->
