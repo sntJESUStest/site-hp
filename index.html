@@ -535,27 +535,27 @@
 <!-- FAQ -->
 <section class="section">
   <div class="pill"><i class="ti ti-help-circle"></i> Dúvidas frequentes</div>
-  <div class="stitle">Perguntas que a gente ouve todo dia</div>
+  <div class="stitle">Perguntas frequentes</div>
   <div class="faq">
     <div class="faq-item">
-      <div class="faq-q">Posso migrar meu contador para a HP sem complicação? <i class="ti ti-chevron-down"></i></div>
-      <div class="faq-a">Sim. Cuidamos de todo o processo de transferência, incluindo documentação e comunicação com o contador anterior. É gratuito e leva em média 5 dias úteis.</div>
+      <div class="faq-q">Como funciona a migração do contador atual para a HP? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Cuidamos de todo o processo de transferência, incluindo documentação e comunicação com o contador anterior. É gratuito e leva em média 5 dias úteis — sem interrupção nas obrigações da sua empresa.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Quanto tempo leva para ter a contabilidade em dia? <i class="ti ti-chevron-down"></i></div>
-      <div class="faq-a">Na maioria dos casos, em até 30 dias sua empresa já está com todas as obrigações regularizadas e com relatórios mensais disponíveis.</div>
+      <div class="faq-q">Quanto tempo leva para regularizar minha contabilidade? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Na maioria dos casos, em até 30 dias sua empresa já está com todas as obrigações regularizadas e com relatórios mensais disponíveis no portal.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Vocês atendem empresas de todos os segmentos? <i class="ti ti-chevron-down"></i></div>
-      <div class="faq-a">Temos especialistas em comércio, construção civil, saúde, serviços e startups. Cada segmento tem particularidades fiscais e nosso time está preparado para isso.</div>
+      <div class="faq-q">Atendem empresas de todos os segmentos e regimes? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim. Temos especialistas em comércio, construção civil, saúde, serviços e startups, atendendo empresas no Simples Nacional, Lucro Presumido e Lucro Real.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Como funciona o suporte ao cliente? <i class="ti ti-chevron-down"></i></div>
-      <div class="faq-a">Você tem um contador dedicado e pode entrar em contato por telefone, WhatsApp ou e-mail. Respondemos em até 24h em dias úteis.</div>
+      <div class="faq-q">Como é o suporte e o atendimento ao cliente? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Cada empresa tem um contador dedicado. O contato pode ser feito por telefone, WhatsApp ou e-mail, com resposta em até 24h em dias úteis.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Vocês fazem planejamento tributário para Lucro Real? <i class="ti ti-chevron-down"></i></div>
-      <div class="faq-a">Sim. Atendemos empresas nos regimes Simples Nacional, Lucro Presumido e Lucro Real, com planejamento tributário personalizado para cada situação.</div>
+      <div class="faq-q">Fazem planejamento tributário para Lucro Real? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim. Desenvolvemos planejamento tributário personalizado para cada regime, identificando oportunidades legais de redução de carga fiscal.</div>
     </div>
   </div>
 </section>
@@ -567,51 +567,87 @@
 <!-- DEPARTAMENTOS -->
 <section class="section bg-alt" id="departamentos">
   <div style="max-width:960px;margin:0 auto;">
-  <div class="pill"><i class="ti ti-layout-grid"></i> Departamentos</div>
-  <div class="stitle">Nossa estrutura interna</div>
-  <p class="ssub">Cada área da sua empresa cuidada por um time especializado.</p>
+    <div class="pill"><i class="ti ti-layout-grid"></i> Departamentos</div>
+    <div class="stitle">Nossa estrutura interna</div>
+    <p class="ssub">Cada área da sua empresa cuidada por um time especializado.</p>
 
-  <div class="dept-tabs">
-    <button class="dept-tab active" onclick="trocarDept('contabil', this)"><i class="ti ti-building-bank" style="font-size:14px;margin-right:5px;"></i> Contábil</button>
-    <button class="dept-tab" onclick="trocarDept('fiscal', this)"><i class="ti ti-receipt-tax" style="font-size:14px;margin-right:5px;"></i> Fiscal</button>
-    <button class="dept-tab" onclick="trocarDept('pessoal', this)"><i class="ti ti-users" style="font-size:14px;margin-right:5px;"></i> Pessoal</button>
-  </div>
-
-  <!-- CONTÁBIL -->
-  <div class="dept-panel active" id="dept-contabil">
-    <div class="dept-mini-grid">
-      <div class="dept-mini-card"><i class="ti ti-file-text" style="color:#185FA5;"></i><span>Escrituração contábil</span></div>
-      <div class="dept-mini-card"><i class="ti ti-chart-bar" style="color:#185FA5;"></i><span>Balanço e DRE</span></div>
-      <div class="dept-mini-card"><i class="ti ti-shield-check" style="color:#185FA5;"></i><span>Auditoria</span></div>
-      <div class="dept-mini-card"><i class="ti ti-building" style="color:#185FA5;"></i><span>Holdings</span></div>
-      <div class="dept-mini-card"><i class="ti ti-file-certificate" style="color:#185FA5;"></i><span>SPED Contábil</span></div>
-      <div class="dept-mini-card"><i class="ti ti-report-analytics" style="color:#185FA5;"></i><span>Relatórios mensais</span></div>
+    <div class="dept-tabs" style="margin-bottom:0;">
+      <button class="dept-tab active" onclick="trocarDept('contabil', this)"><i class="ti ti-building-bank" style="font-size:14px;margin-right:5px;"></i> Contábil</button>
+      <button class="dept-tab" onclick="trocarDept('fiscal', this)"><i class="ti ti-receipt-tax" style="font-size:14px;margin-right:5px;"></i> Fiscal</button>
+      <button class="dept-tab" onclick="trocarDept('pessoal', this)"><i class="ti ti-users" style="font-size:14px;margin-right:5px;"></i> Pessoal</button>
     </div>
-  </div>
 
-  <!-- FISCAL -->
-  <div class="dept-panel" id="dept-fiscal">
-    <div class="dept-mini-grid">
-      <div class="dept-mini-card"><i class="ti ti-calculator" style="color:#D97706;"></i><span>Apuração de impostos</span></div>
-      <div class="dept-mini-card"><i class="ti ti-trending-down" style="color:#D97706;"></i><span>Planejamento tributário</span></div>
-      <div class="dept-mini-card"><i class="ti ti-file-invoice" style="color:#D97706;"></i><span>SPED Fiscal</span></div>
-      <div class="dept-mini-card"><i class="ti ti-refresh" style="color:#D97706;"></i><span>Revisão de regime</span></div>
-      <div class="dept-mini-card"><i class="ti ti-receipt" style="color:#D97706;"></i><span>DAS / DARF / DCTF</span></div>
-      <div class="dept-mini-card"><i class="ti ti-alert-triangle" style="color:#D97706;"></i><span>Defesa fiscal</span></div>
+    <!-- CONTÁBIL -->
+    <div class="dept-panel active" id="dept-contabil" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:2rem;">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--blue-main);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Contabilidade</div>
+        <h3 style="font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.75rem;line-height:1.4;">Escrituração precisa, relatórios que fazem sentido</h3>
+        <p style="font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">Mantenha sua contabilidade em dia com lançamentos corretos, balanços completos e relatórios mensais que ajudam a tomar decisões com segurança.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:var(--blue-main);font-size:15px;flex-shrink:0;"></i> Escrituração e conciliação</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:var(--blue-main);font-size:15px;flex-shrink:0;"></i> Balanço patrimonial e DRE</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:var(--blue-main);font-size:15px;flex-shrink:0;"></i> SPED Contábil e ECF</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:var(--blue-main);font-size:15px;flex-shrink:0;"></i> Holdings e estruturação societária</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:var(--blue-main);font-size:15px;flex-shrink:0;"></i> Auditoria e relatórios gerenciais</div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-file-text" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Escrituração</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-chart-bar" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Balanço e DRE</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-shield-check" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Auditoria</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-building" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Holdings</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-file-certificate" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">SPED Contábil</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(24,95,165,.07);border-radius:12px;text-align:center;"><i class="ti ti-report-analytics" style="font-size:26px;color:#185FA5;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Relatórios</span></div>
+      </div>
     </div>
-  </div>
 
-  <!-- PESSOAL -->
-  <div class="dept-panel" id="dept-pessoal">
-    <div class="dept-mini-grid">
-      <div class="dept-mini-card"><i class="ti ti-user-plus" style="color:#059669;"></i><span>Admissão e demissão</span></div>
-      <div class="dept-mini-card"><i class="ti ti-currency-dollar" style="color:#059669;"></i><span>Folha de pagamento</span></div>
-      <div class="dept-mini-card"><i class="ti ti-beach" style="color:#059669;"></i><span>Férias e 13º</span></div>
-      <div class="dept-mini-card"><i class="ti ti-device-laptop" style="color:#059669;"></i><span>eSocial</span></div>
-      <div class="dept-mini-card"><i class="ti ti-scale" style="color:#059669;"></i><span>Pró-labore</span></div>
-      <div class="dept-mini-card"><i class="ti ti-heart-handshake" style="color:#059669;"></i><span>Benefícios</span></div>
+    <!-- FISCAL -->
+    <div class="dept-panel" id="dept-fiscal" style="display:none;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:2rem;">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#D97706;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Fiscal &amp; Tributário</div>
+        <h3 style="font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.75rem;line-height:1.4;">Menos impostos, mais segurança fiscal</h3>
+        <p style="font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">Identificamos oportunidades legais de redução tributária e garantimos que sua empresa está em dia com todas as obrigações acessórias e principais.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#D97706;font-size:15px;flex-shrink:0;"></i> Apuração e pagamento de impostos</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#D97706;font-size:15px;flex-shrink:0;"></i> Planejamento tributário</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#D97706;font-size:15px;flex-shrink:0;"></i> SPED Fiscal e obrigações acessórias</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#D97706;font-size:15px;flex-shrink:0;"></i> DAS, DARF, DCTF e DIRF</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#D97706;font-size:15px;flex-shrink:0;"></i> Defesa em autuações fiscais</div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-calculator" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Apuração</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-trending-down" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Planejamento</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-file-invoice" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">SPED Fiscal</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-refresh" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Revisão</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-receipt" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">DAS / DARF</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(217,119,6,.08);border-radius:12px;text-align:center;"><i class="ti ti-alert-triangle" style="font-size:26px;color:#D97706;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Defesa fiscal</span></div>
+      </div>
     </div>
-  </div>
+
+    <!-- PESSOAL -->
+    <div class="dept-panel" id="dept-pessoal" style="display:none;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:2rem;">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#059669;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Departamento Pessoal</div>
+        <h3 style="font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.75rem;line-height:1.4;">Seu time em ordem, do eSocial às férias</h3>
+        <p style="font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">Gerenciamos toda a vida trabalhista da sua equipe com precisão — de admissões e demissões até folha de pagamento e obrigações legais.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#059669;font-size:15px;flex-shrink:0;"></i> Admissão e demissão completa</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#059669;font-size:15px;flex-shrink:0;"></i> Folha de pagamento mensal</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#059669;font-size:15px;flex-shrink:0;"></i> Férias, 13º e rescisões</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#059669;font-size:15px;flex-shrink:0;"></i> eSocial e obrigações trabalhistas</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);"><i class="ti ti-circle-check" style="color:#059669;font-size:15px;flex-shrink:0;"></i> Pró-labore e gestão de benefícios</div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-user-plus" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Admissão</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-currency-dollar" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Folha</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-beach" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Férias e 13º</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-device-laptop" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">eSocial</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-scale" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Pró-labore</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.1rem;background:rgba(5,150,105,.08);border-radius:12px;text-align:center;"><i class="ti ti-heart-handshake" style="font-size:26px;color:#059669;"></i><span style="font-size:12px;font-weight:500;color:var(--text);">Benefícios</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
