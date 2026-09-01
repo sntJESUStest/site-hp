@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fator R – HP Contabilidade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0B1826;
+      --navy-2:  #112236;
+      --blue:    #1A4A7A;
+      --accent:  #2A7FD4;
+      --gold:    #C8A84B;
+      --light:   #E8F0F8;
+      --white:   #FFFFFF;
+      --text:    #D0DCE8;
+      --muted:   #8FA8C0;
+      --border:  rgba(42,127,212,0.18);
+      --radius:  10px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, #0D2A45 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(42,127,212,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: var(--gold);
+      border: 1px solid rgba(200,168,75,0.35);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: var(--white);
+      max-width: 740px;
+      margin: 0 auto 20px;
+      line-height: 1.15;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 600;
+      font-size: .95rem;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .hero-cta:hover { background: #1f6bb5; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── SECTION TITLES ── */
+    .section { padding: 72px 24px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      max-width: 600px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    /* ── O QUE É ── */
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media(max-width:640px){ .what-grid { grid-template-columns: 1fr; } }
+    .what-card {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .what-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .what-card p { font-size: .93rem; color: var(--muted); }
+
+    /* ── FORMULA ── */
+    .formula-block {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .formula-block .f-label {
+      font-size: .8rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      margin-bottom: 16px;
+    }
+    .formula {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .formula .num { color: var(--accent); }
+    .formula .den { color: var(--gold); }
+    .formula .eq  { color: var(--white); opacity:.5; margin: 0 8px; }
+    .formula-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0;
+    }
+
+    /* ── IMPACTO ── */
+    .impact-section { background: var(--navy-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media(max-width:640px){ .impact-grid { grid-template-columns: 1fr; } }
+
+    .impact-card {
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .impact-card.positive { background: rgba(42,127,212,0.08); border-color: rgba(42,127,212,0.3); }
+    .impact-card.negative { background: rgba(200,168,75,0.06); border-color: rgba(200,168,75,0.25); }
+
+    .impact-badge {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 3px 12px;
+      margin-bottom: 16px;
+    }
+    .positive .impact-badge { background: rgba(42,127,212,0.2); color: var(--accent); }
+    .negative .impact-badge { background: rgba(200,168,75,0.15); color: var(--gold); }
+
+    .impact-card .pct {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .positive .pct { color: var(--accent); }
+    .negative .pct { color: var(--gold); }
+
+    .impact-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .impact-card p { font-size: .88rem; color: var(--muted); margin-bottom: 12px; }
+    .impact-card ul { list-style: none; padding: 0; }
+    .impact-card ul li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding: 5px 0;
+      border-top: 1px solid var(--border);
+    }
+    .impact-card ul li::before { content: '– '; color: var(--accent); }
+    .negative .impact-card ul li::before { color: var(--gold); }
+
+    /* ── ESTRATÉGIAS ── */
+    .strat-list { display: flex; flex-direction: column; gap: 16px; }
+    .strat-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .strat-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(42,127,212,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .strat-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .strat-item p { font-size: .88rem; color: var(--muted); }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--navy-2) 100%);
+      border-top: 1px solid var(--border);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 32px; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 15px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .cta-btn:hover { opacity: .88; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Planejamento Tributário</div>
+    <h1>Fator R: como ele define<br><span>quanto sua empresa paga de imposto</span></h1>
+    <p>Entenda o cálculo que pode migrar sua empresa para uma alíquota menor dentro do Simples Nacional — de forma completamente legal.</p>
+    <a href="#contato" class="hero-cta">Falar com um especialista</a>
+  </section>
+
+  <!-- O QUE É -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Conceito</p>
+      <h2>O que é o Fator R?</h2>
+      <p class="section-lead">
+        O "R" vem de <strong style="color:var(--white)">razão</strong> — a proporção entre o que sua empresa gasta com pessoas e o que ela fatura. Esse índice determina em qual anexo do Simples Nacional você será tributado.
+      </p>
+      <div class="what-grid">
+        <div class="what-card">
+          <h3>Para quem se aplica</h3>
+          <p>Exclusivo para prestadores de serviços optantes pelo Simples Nacional cujas atividades podem transitar entre o Anexo III e o Anexo V — como TI, consultoria, saúde, engenharia e outras atividades intelectuais.</p>
+        </div>
+        <div class="what-card">
+          <h3>Quando é calculado</h3>
+          <p>O cálculo é feito mensalmente, sempre com base no acumulado dos últimos 12 meses. Isso significa que seu enquadramento pode mudar de um mês para o outro, para melhor ou para pior.</p>
+        </div>
+        <div class="what-card">
+          <h3>O que entra na folha</h3>
+          <p>Salários, 13º, férias, encargos trabalhistas (FGTS, INSS patronal) e o pró-labore dos sócios que atuam na empresa — tudo que representa remuneração de pessoas.</p>
+        </div>
+        <div class="what-card">
+          <h3>O que é receita bruta</h3>
+          <p>O total faturado pela empresa nos últimos 12 meses, sem descontos. É a base sobre a qual a proporção da folha é medida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FÓRMULA -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">O Cálculo</p>
+      <h2>Como o Fator R é calculado</h2>
+      <p class="section-lead">A fórmula é simples. O resultado — expresso em porcentagem — é o que define seu enquadramento tributário.</p>
+
+      <div class="formula-block">
+        <p class="f-label">FÓRMULA DO FATOR R</p>
+        <div class="formula">
+          <span class="num">Folha de Pagamento (12 meses)</span>
+          <div class="formula-divider"></div>
+          <span class="den">Receita Bruta (12 meses)</span>
+          <span class="eq">×</span>
+          <span style="color:var(--white)">100</span>
+        </div>
+        <p style="color:var(--muted);font-size:.85rem;margin-top:20px;">O resultado é uma porcentagem. Se for <strong style="color:var(--accent)">≥ 28%</strong>, sua empresa pode ser enquadrada no Anexo III.</p>
+      </div>
+
+      <div class="what-card" style="max-width:100%">
+        <h3>Exemplo prático</h3>
+        <p>Uma empresa faturou <strong style="color:var(--white)">R$ 500.000</strong> nos últimos 12 meses e gastou <strong style="color:var(--white)">R$ 145.000</strong> com folha de pagamento.<br><br>
+        Fator R = 145.000 ÷ 500.000 × 100 = <strong style="color:var(--accent)">29%</strong><br><br>
+        Como o resultado é acima de 28%, a empresa pode ser tributada pelo <strong style="color:var(--accent)">Anexo III</strong>, com alíquota inicial de 6% — e não pelo Anexo V, cuja alíquota começa em 15,5%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTO -->
+  <section class="section impact-section">
+    <div class="container">
+      <p class="section-label">Impacto Tributário</p>
+      <h2>A diferença entre os Anexos</h2>
+      <p class="section-lead">Estar no Anexo errado pode representar uma carga tributária muito maior. Veja a diferença:</p>
+
+      <div class="impact-grid">
+        <div class="impact-card positive">
+          <span class="impact-badge">Fator R ≥ 28%</span>
+          <div class="pct">6%</div>
+          <h3>Anexo III — Alíquota inicial</h3>
+          <p>Tributação mais vantajosa para empresas de serviços com folha de pagamento representativa.</p>
+          <ul>
+            <li>Alíquotas de 6% a 33%</li>
+            <li>ISS calculado dentro do DAS</li>
+            <li>Carga tributária reduzida</li>
+            <li>Ideal para empresas que investem em equipe</li>
+          </ul>
+        </div>
+        <div class="impact-card negative">
+          <span class="impact-badge" style="background:rgba(200,168,75,0.15);color:var(--gold)">Fator R &lt; 28%</span>
+          <div class="pct">15,5%</div>
+          <h3>Anexo V — Alíquota inicial</h3>
+          <p>Tributação mais elevada para empresas que não atingem o percentual mínimo de gastos com folha.</p>
+          <ul>
+            <li>Alíquotas de 15,5% a 30,5%</li>
+            <li>Carga tributária significativamente maior</li>
+            <li>Impacto direto na margem de lucro</li>
+            <li>Exige planejamento tributário urgente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRATÉGIAS -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Planejamento</p>
+      <h2>Como melhorar seu Fator R</h2>
+      <p class="section-lead">Existem estratégias legais para elevar o Fator R e migrar para o Anexo III. Um contador especializado é essencial para avaliar cada caso.</p>
+
+      <div class="strat-list">
+        <div class="strat-item">
+          <div class="strat-icon">💼</div>
+          <div>
+            <h3>Revisão do pró-labore dos sócios</h3>
+            <p>O pró-labore entra no cálculo da folha de pagamento. Ajustar o valor retirado pelos sócios pode elevar o Fator R sem necessidade de novas contratações — mas requer análise do impacto no INSS e IRPF de cada sócio.</p>
+          </div>
+        </div>
+        <div class="strat-item">
+          <div class="strat-icon">👥</div>
+          <div>
+            <h3>Formalização de equipe</h3>
+            <p>Contratar colaboradores com carteira assinada, ou regularizar prestadores que na prática são funcionários, aumenta a folha e pode elevar o Fator R — além de reduzir riscos trabalhistas.</p>
+          </div>
+        </div>
+        <div class="strat-item">
+          <div class="strat-icon">📊</div>
+          <div>
+            <h3>Monitoramento mensal</h3>
+            <p>Como o cálculo usa os últimos 12 meses, o resultado muda todo mês. Acompanhar o Fator R mensalmente permite agir antes que um enquadramento desfavorável aconteça.</p>
+          </div>
+        </div>
+        <div class="strat-item">
+          <div class="strat-icon">🔍</div>
+          <div>
+            <h3>Revisão de CNAEs</h3>
+            <p>Nem todas as atividades podem transitar entre os Anexos III e V. Verificar se os CNAEs da empresa estão corretos e alinhados com as atividades reais é o primeiro passo de qualquer análise do Fator R.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contato">
+    <div class="container">
+      <h2>Sua empresa está no anexo certo?</h2>
+      <p>A HP Contabilidade analisa o Fator R da sua empresa e indica o caminho mais vantajoso dentro do Simples Nacional.</p>
+      <a href="mailto:contato@hpcontabilidade.com.br" class="cta-btn">Solicitar análise gratuita</a>
+    </div>
+  </section>
+
+</body>
+</html>
