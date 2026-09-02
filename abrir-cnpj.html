@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abra seu CNPJ | HP Contabilidade</title>
+  <meta name="description" content="Abra seu CNPJ com a HP Contabilidade em até 7 dias. Do zero à empresa formalizada, sem burocracia. Curitiba e região." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue-deep: #0A0D12;
+      --blue-mid: #1A2535;
+      --blue-main: #2C4A6E;
+      --blue-light: #C8D6E5;
+      --bg: #ffffff;
+      --bg2: #F4F5F7;
+      --text: #1A1F2E;
+      --text2: #64748B;
+      --border: #E2E8F0;
+      --green: #0d3b26;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:64px; border-bottom:1px solid var(--border); background:var(--bg); position:sticky; top:0; z-index:100; }
+    .logo { display:flex; align-items:center; gap:10px; font-weight:600; font-size:16px; }
+    .logo span { color:var(--blue-main); }
+    .nav-cta { background:var(--blue-mid); color:#fff; border:none; padding:10px 20px; border-radius:24px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0d3b26 0%, #1a5c3a 50%, #0d3b26 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-tag { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; background:rgba(255,255,255,0.15); padding:6px 16px; border-radius:20px; margin-bottom:1.5rem; }
+    .hero h1 { font-family:'Playfair Display', serif; font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.15; margin-bottom:1.25rem; }
+    .hero h1 span { opacity:.7; font-size:.6em; display:block; font-family:'Inter',sans-serif; font-weight:400; margin-bottom:.5rem; }
+    .hero p { font-size:1.05rem; opacity:.85; max-width:560px; margin:0 auto 2.5rem; line-height:1.7; }
+    .hero-cta { display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--green); font-weight:700; font-size:14px; padding:14px 28px; border-radius:12px; transition:transform .2s, box-shadow .2s; }
+    .hero-cta:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+    .hero-trust { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-top:2.5rem; }
+    .hero-trust span { font-size:13px; opacity:.8; display:flex; align-items:center; gap:6px; }
+
+    /* SEÇÃO */
+    .section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-center { text-align: center; }
+    .pill { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--text2); background:var(--bg2); border:1px solid var(--border); padding:5px 14px; border-radius:20px; margin-bottom:1rem; }
+    .stitle { font-size:clamp(1.5rem,3vw,2.2rem); font-weight:700; color:var(--text); margin-bottom:.75rem; }
+    .ssub { font-size:14px; color:var(--text2); line-height:1.75; max-width:600px; }
+
+    /* PASSOS */
+    .steps { display:flex; flex-direction:column; gap:0; margin-top:3rem; position:relative; }
+    .steps::before { content:''; position:absolute; left:28px; top:48px; bottom:48px; width:2px; background:linear-gradient(to bottom,#0d3b26,rgba(13,59,38,0.1)); }
+    .step { display:flex; gap:1.5rem; align-items:flex-start; padding:2rem 0; }
+    .step-num { width:56px; height:56px; border-radius:50%; background:var(--green); color:#fff; font-size:1.1rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; z-index:1; box-shadow:0 4px 16px rgba(13,59,38,0.3); }
+    .step-body { padding-top:8px; }
+    .step-body h3 { font-size:1.05rem; font-weight:700; margin-bottom:.5rem; color:var(--text); }
+    .step-body p { font-size:13px; color:var(--text2); line-height:1.75; }
+    .step-body .step-tip { display:inline-flex; align-items:center; gap:6px; margin-top:.75rem; font-size:12px; font-weight:600; color:var(--green); background:rgba(13,59,38,0.08); padding:5px 12px; border-radius:8px; }
+
+    /* DOCS */
+    .docs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:2rem; }
+    .doc-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.25rem; display:flex; align-items:center; gap:12px; font-size:13px; font-weight:500; color:var(--text); }
+    .doc-card i { font-size:22px; color:var(--green); flex-shrink:0; }
+
+    /* BENEFÍCIOS */
+    .benefits { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:2rem; }
+    .benefit { background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:1.5rem; transition:transform .2s,box-shadow .2s; }
+    .benefit:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(44,74,110,0.08); }
+    .benefit i { font-size:28px; color:var(--green); margin-bottom:.75rem; display:block; }
+    .benefit h4 { font-size:14px; font-weight:700; margin-bottom:.4rem; }
+    .benefit p { font-size:12px; color:var(--text2); line-height:1.65; }
+
+    /* CTA FINAL */
+    .cta-final { background:linear-gradient(135deg,#0d3b26,#1a5c3a); border-radius:20px; padding:3rem 2rem; text-align:center; color:#fff; margin-top:4rem; }
+    .cta-final h2 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:.75rem; }
+    .cta-final p { opacity:.8; font-size:14px; margin-bottom:2rem; line-height:1.7; }
+    .cta-btn { display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--green); font-weight:700; font-size:14px; padding:14px 28px; border-radius:12px; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:transform .2s,box-shadow .2s; }
+    .cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+
+    /* FAQ */
+    .faq { max-width:660px; margin:2rem auto 0; }
+    .faq-item { border-bottom:1px solid var(--border); }
+    .faq-q { font-size:14px; font-weight:500; display:flex; justify-content:space-between; align-items:center; cursor:pointer; padding:1rem 0; gap:12px; }
+    .faq-q i { font-size:16px; color:var(--blue-main); flex-shrink:0; transition:transform .25s; }
+    .faq-a { font-size:13px; color:var(--text2); line-height:1.75; padding-bottom:1rem; display:none; }
+    .faq-item.open .faq-a { display:block; }
+    .faq-item.open .faq-q i { transform:rotate(180deg); }
+
+    /* BOTÃO WHATSAPP FLUTUANTE */
+    .wa-float { position:fixed; bottom:28px; right:28px; z-index:999; }
+    .wa-btn { width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.4); cursor:pointer; text-decoration:none; transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),box-shadow .25s; position:relative; z-index:1; }
+    .wa-btn:hover { transform:scale(1.1); box-shadow:0 12px 32px rgba(37,211,102,0.5); }
+    .wa-btn i { font-size:28px; color:#fff; }
+    .wa-pulse { position:absolute; width:56px; height:56px; border-radius:50%; background:#25D366; opacity:0.4; animation:pulse 2s infinite; pointer-events:none; z-index:0; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.5);opacity:0} }
+
+    @media(max-width:640px){ .steps::before{left:20px;} .step-num{width:40px;height:40px;font-size:.9rem;} }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="logo">
+    <span>HP</span> Contabilidade
+  </a>
+  <button class="nav-cta" onclick="window.open('https://wa.me/5541988900722','_blank')"><i class="ti ti-brand-whatsapp" style="margin-right:5px;"></i>Falar com especialista</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag"><i class="ti ti-building"></i> Abertura de empresa</div>
+  <h1>
+    <span>Está começando um negócio?</span>
+    Abra seu CNPJ<br/>com quem entende
+  </h1>
+  <p>Do zero à empresa formalizada em até 7 dias úteis. Nós cuidamos de toda a burocracia — você só precisa dos documentos e da sua ideia.</p>
+  <a href="https://wa.me/5541988900722" target="_blank" class="hero-cta">
+    <i class="ti ti-brand-whatsapp"></i> Começar agora no WhatsApp
+  </a>
+  <div class="hero-trust">
+    <span><i class="ti ti-check"></i> Processo 100% guiado</span>
+    <span><i class="ti ti-check"></i> Sem custo de abertura</span>
+    <span><i class="ti ti-check"></i> Regime tributário ideal</span>
+    <span><i class="ti ti-check"></i> +40 anos de experiência</span>
+  </div>
+</div>
+
+<!-- PASSOS -->
+<div class="section">
+  <div class="pill"><i class="ti ti-list-numbers"></i> Como funciona</div>
+  <div class="stitle">Os 3 passos para abrir sua empresa</div>
+  <p class="ssub">Trabalhamos de forma prática, simples e muito próxima de você — do começo ao fim.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Conversamos sobre o seu negócio</h3>
+        <p>Nossos especialistas entendem sua atividade, perfil e objetivos. A partir disso, indicamos o melhor tipo de empresa (MEI, LTDA, SLU) e o regime tributário mais vantajoso para você — Simples Nacional, Lucro Presumido ou Real.</p>
+        <div class="step-tip"><i class="ti ti-clock"></i> Sem custo e sem compromisso</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Cuidamos de todo o processo de abertura</h3>
+        <p>Registramos sua empresa na Junta Comercial, obtemos o CNPJ, Alvará de Funcionamento, Inscrição Estadual e Municipal. Você acompanha cada etapa e nós atualizamos você a cada avanço.</p>
+        <div class="step-tip"><i class="ti ti-calendar"></i> Em até 7 dias úteis</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Sua contabilidade começa do jeito certo</h3>
+        <p>Empresa aberta, contabilidade mensal configurada. Emissão de notas, folha de pagamento, obrigações fiscais — tudo organizado desde o primeiro dia. Você foca no seu negócio, a HP cuida do resto.</p>
+        <div class="step-tip"><i class="ti ti-shield-check"></i> Contabilidade completa incluída</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTOS NECESSÁRIOS -->
+<div style="background:var(--bg2);padding:4rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="pill"><i class="ti ti-file-text"></i> Documentação</div>
+    <div class="stitle">O que você precisa ter em mãos</div>
+    <p class="ssub">Para abrir sua empresa, separamos a lista completa de documentos necessários:</p>
+    <div class="docs-grid">
+      <div class="doc-card"><i class="ti ti-id"></i> RG e CPF dos sócios</div>
+      <div class="doc-card"><i class="ti ti-file-certificate"></i> Comprovante de residência</div>
+      <div class="doc-card"><i class="ti ti-home"></i> Endereço do estabelecimento</div>
+      <div class="doc-card"><i class="ti ti-briefcase"></i> Descrição da atividade</div>
+      <div class="doc-card"><i class="ti ti-currency-dollar"></i> Capital social inicial</div>
+      <div class="doc-card"><i class="ti ti-users"></i> Dados dos sócios e participações</div>
+    </div>
+    <p style="font-size:12px;color:var(--text2);margin-top:1.25rem;">* Conforme o tipo de empresa e atividade, podem ser necessários documentos adicionais. Nossa equipe te orienta em cada caso.</p>
+  </div>
+</div>
+
+<!-- BENEFÍCIOS -->
+<div class="section">
+  <div class="pill"><i class="ti ti-star"></i> Por que a HP</div>
+  <div class="stitle">Vantagens de abrir com a HP Contabilidade</div>
+  <div class="benefits">
+    <div class="benefit">
+      <i class="ti ti-rocket"></i>
+      <h4>Agilidade real</h4>
+      <p>Processo otimizado com mais de 40 anos de experiência. Abrimos centenas de empresas em Curitiba.</p>
+    </div>
+    <div class="benefit">
+      <i class="ti ti-calculator"></i>
+      <h4>Regime tributário ideal</h4>
+      <p>Escolhemos o regime que vai economizar mais impostos para o seu perfil de negócio.</p>
+    </div>
+    <div class="benefit">
+      <i class="ti ti-headset"></i>
+      <h4>Suporte dedicado</h4>
+      <p>Você tem um contador de referência durante todo o processo — pelo WhatsApp, e-mail ou telefone.</p>
+    </div>
+    <div class="benefit">
+      <i class="ti ti-shield-check"></i>
+      <h4>Sem surpresas</h4>
+      <p>Transparência total nos prazos, documentos e custos. Você sabe exatamente o que está acontecendo.</p>
+    </div>
+    <div class="benefit">
+      <i class="ti ti-certificate"></i>
+      <h4>CRC ativo e reconhecido</h4>
+      <p>Somos um escritório credenciado com responsável técnico registrado no CRC/PR.</p>
+    </div>
+    <div class="benefit">
+      <i class="ti ti-arrow-forward-up"></i>
+      <h4>Crescimento junto</h4>
+      <p>Depois da abertura, continuamos ao seu lado — contabilidade, RH, fiscal e planejamento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section section-center">
+  <div class="pill"><i class="ti ti-help-circle"></i> Dúvidas frequentes</div>
+  <div class="stitle">Perguntas sobre abertura de CNPJ</div>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">Quanto tempo leva para abrir uma empresa? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Em média entre 5 e 7 dias úteis para empresas simples. Atividades que exigem licenças específicas (saúde, alimentos, farmácias) podem levar um pouco mais.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Qual é o custo para abrir minha empresa? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Há taxas estaduais e municipais obrigatórias (Junta Comercial, Alvará). Não cobramos honorários pela abertura — ela já está incluída no plano de contabilidade mensal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso abrir mesmo sem saber o endereço do negócio? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim! Se você ainda não tem um ponto comercial, podemos registrar a empresa no seu endereço residencial (permitido para diversas atividades) ou indicar endereços fiscais adequados.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">MEI, LTDA ou SLU — qual é o melhor para mim? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Depende do seu faturamento esperado, número de sócios e atividade. Nossos especialistas fazem essa análise com você gratuitamente antes de iniciar a abertura.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Vocês atendem quem está fora de Curitiba? <i class="ti ti-chevron-down"></i></div>
+      <div class="faq-a">Sim. Atendemos toda a região metropolitana de Curitiba e também de forma remota para outras cidades do Paraná.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="section">
+  <div class="cta-final">
+    <h2>Pronto para formalizar seu negócio?</h2>
+    <p>Fale com um especialista da HP Contabilidade agora mesmo e receba uma orientação gratuita sobre como abrir sua empresa.</p>
+    <a href="https://wa.me/5541988900722" target="_blank" class="cta-btn">
+      <i class="ti ti-brand-whatsapp"></i> Quero abrir meu CNPJ
+    </a>
+  </div>
+</div>
+
+<!-- BOTÃO WHATSAPP FLUTUANTE -->
+<div class="wa-float">
+  <div class="wa-pulse"></div>
+  <a class="wa-btn" href="https://wa.me/5541988900722" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="ti ti-brand-whatsapp"></i>
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      document.querySelectorAll('.faq-item').forEach(i => { if(i !== item) i.classList.remove('open'); });
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
